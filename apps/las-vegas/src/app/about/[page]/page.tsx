@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import { Breadcrumbs, CTABox, Sidebar, PageHeroSection } from "@injury/ui";
 import { siteConfig } from "@/config/site";
 import {
@@ -77,6 +78,18 @@ export default function AboutPage({ params }: Props) {
                     <p className="text-gray-700 leading-relaxed">{section.body}</p>
                   </div>
                 </section>
+
+                {i === 0 && (
+                  <div className="not-prose my-8 rounded-xl overflow-hidden shadow-md">
+                    <Image
+                      src="/images/attorney-consultation.webp"
+                      alt="Personal injury attorney consultation"
+                      width={1536}
+                      height={1024}
+                      className="w-full h-64 sm:h-72 object-cover"
+                    />
+                  </div>
+                )}
 
                 {(i + 1) % 2 === 0 && i < content.sections.length - 1 && (
                   <CTABox config={siteConfig} variant="outline" />

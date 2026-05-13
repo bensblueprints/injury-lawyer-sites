@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import { Breadcrumbs, CTABox, FAQAccordion, PageHeroSection } from "@injury/ui";
 import { siteConfig } from "@/config/site";
 import { FAQ_TOPIC_SLUGS, getFAQContent } from "@/content/faqs";
@@ -101,6 +102,16 @@ export default function FAQTopicPage({ params }: Props) {
 
       {/* FAQ Content */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="not-prose my-8 rounded-xl overflow-hidden shadow-md">
+          <Image
+            src="/images/courtroom.webp"
+            alt="Personal injury law courtroom"
+            width={1536}
+            height={1024}
+            className="w-full h-64 sm:h-72 object-cover"
+          />
+        </div>
+
         <FAQAccordion faqs={content.faqs} />
 
         <div className="mt-12">

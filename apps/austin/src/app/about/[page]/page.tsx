@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import { PageHeroSection, CTABox, Breadcrumbs, Sidebar } from "@injury/ui";
 import { siteConfig } from "@/config/site";
 
@@ -86,6 +87,16 @@ export default function AboutPage({ params }: Props) {
                 the same resources, aggression, and expertise to every case we take — whether
                 it&apos;s a minor car accident or a catastrophic injury claim.
               </p>
+            </div>
+
+            <div className="not-prose my-8 rounded-xl overflow-hidden shadow-md">
+              <Image
+                src="/images/attorney-consultation.webp"
+                alt="Personal injury attorney consultation"
+                width={1536}
+                height={1024}
+                className="w-full h-64 sm:h-72 object-cover"
+              />
             </div>
 
             <div className="mb-8">

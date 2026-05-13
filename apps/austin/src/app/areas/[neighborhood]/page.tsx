@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import {
   PageHeroSection,
   CTABox,
@@ -206,6 +207,16 @@ export default function NeighborhoodPage({ params }: Props) {
                 Personal Injury Cases in {hood.name}
               </h2>
               <p className="text-gray-700 leading-relaxed">{hood.extra}</p>
+            </div>
+
+            <div className="not-prose my-8 rounded-xl overflow-hidden shadow-md">
+              <Image
+                src="/images/attorney-consultation.webp"
+                alt="Personal injury attorney"
+                width={1536}
+                height={1024}
+                className="w-full h-64 sm:h-72 object-cover"
+              />
             </div>
 
             <div className="mb-8">

@@ -48,7 +48,7 @@ export default async function SitesPage() {
                   Leads
                 </th>
                 <th className="text-left text-slate-400 text-xs font-medium px-4 py-3">
-                  Cost/Lead
+                  Pricing (FF / AI / HT)
                 </th>
                 <th className="text-left text-slate-400 text-xs font-medium px-4 py-3">
                   Attorney

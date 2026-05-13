@@ -11,23 +11,27 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
-  // body: { attorneyId, leadIds, notes }
   const attorney = await prisma.attorney.findUniqueOrThrow({
     where: { id: body.attorneyId },
   });
-  // Find cost per lead from their sites
   const sites = await prisma.site.findMany({
     where: { attorneyId: attorney.id },
   });
-  // Calculate amount: for each lead, find site cost per lead
   const leads = await prisma.lead.findMany({
     where: { id: { in: body.leadIds } },
   });
+
+  // Calculate amount using per-lead-type pricing
   let amount = 0;
   for (const lead of leads) {
     const site = sites.find((s) => s.domain === lead.domain);
-    amount += site?.costPerLead ?? 0;
+    if (!site) continue;
+    const type = lead.leadType;
+    if (type === "HOT_TRANSFER") amount += site.hotTransferPrice;
+    else if (type === "AI_CALL") amount += site.aiCallPrice;
+    else amount += site.formFillPrice;
   }
+
   const invoice = await prisma.invoice.create({
     data: {
       attorneyId: attorney.id,
@@ -37,7 +41,6 @@ export async function POST(req: NextRequest) {
     },
     include: { leads: true, attorney: true },
   });
-  // Mark leads as SOLD
   await prisma.lead.updateMany({
     where: { id: { in: body.leadIds } },
     data: { status: "SOLD" },

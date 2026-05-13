@@ -17,6 +17,8 @@ export default async function LeadsPage({
         select: {
           domain: true,
           practiceArea: true,
+          city: true,
+          state: true,
           attorney: { select: { name: true } },
         },
       },

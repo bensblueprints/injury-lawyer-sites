@@ -14,7 +14,9 @@ export async function POST(req: NextRequest) {
   const site = await prisma.site.upsert({
     where: { domain: body.domain },
     update: {
-      costPerLead: body.costPerLead,
+      formFillPrice: body.formFillPrice ?? 0,
+      aiCallPrice: body.aiCallPrice ?? 0,
+      hotTransferPrice: body.hotTransferPrice ?? 0,
       attorneyId: body.attorneyId ?? null,
     },
     create: {
@@ -22,7 +24,9 @@ export async function POST(req: NextRequest) {
       practiceArea: body.practiceArea ?? "Personal Injury",
       city: body.city ?? "",
       state: body.state ?? "",
-      costPerLead: body.costPerLead ?? 0,
+      formFillPrice: body.formFillPrice ?? 0,
+      aiCallPrice: body.aiCallPrice ?? 0,
+      hotTransferPrice: body.hotTransferPrice ?? 0,
       attorneyId: body.attorneyId ?? null,
     },
   });

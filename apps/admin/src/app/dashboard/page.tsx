@@ -81,7 +81,7 @@ export default async function DashboardPage() {
                   Leads
                 </th>
                 <th className="text-right text-slate-400 text-xs font-medium px-4 py-3">
-                  $/Lead
+                  Pricing
                 </th>
               </tr>
             </thead>
@@ -112,8 +112,12 @@ export default async function DashboardPage() {
                   <td className="px-4 py-3 text-white text-sm text-right">
                     {site._count.leads}
                   </td>
-                  <td className="px-4 py-3 text-green-400 text-sm text-right">
-                    ${site.costPerLead.toFixed(0)}
+                  <td className="px-4 py-3 text-right">
+                    <div className="text-xs space-y-0.5">
+                      <div className="text-slate-400">FF: <span className="text-white">${site.formFillPrice.toFixed(0)}</span></div>
+                      <div className="text-slate-400">AI: <span className="text-purple-300">${site.aiCallPrice.toFixed(0)}</span></div>
+                      <div className="text-slate-400">HT: <span className="text-orange-300">${site.hotTransferPrice.toFixed(0)}</span></div>
+                    </div>
                   </td>
                 </tr>
               ))}

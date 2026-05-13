@@ -5,7 +5,19 @@ export async function GET() {
   const attorneys = await prisma.attorney.findMany({
     orderBy: { createdAt: "desc" },
     include: {
-      sites: { include: { _count: { select: { leads: true } } } },
+      sites: {
+        select: {
+          id: true,
+          domain: true,
+          practiceArea: true,
+          city: true,
+          state: true,
+          formFillPrice: true,
+          aiCallPrice: true,
+          hotTransferPrice: true,
+          _count: { select: { leads: true } },
+        },
+      },
       _count: { select: { invoices: true } },
     },
   });

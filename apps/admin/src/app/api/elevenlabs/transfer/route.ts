@@ -66,6 +66,7 @@ export async function POST(req: NextRequest) {
         email,
         caseType: caseType ?? "General Inquiry",
         message: message ?? null,
+        leadType: "HOT_TRANSFER",
       },
     });
 

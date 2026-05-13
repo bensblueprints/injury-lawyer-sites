@@ -153,12 +153,13 @@ export async function POST(request: NextRequest) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          domain: "devnercoloradoinjurylawyer.com",
+          domain: "denvercoloradoinjurylawyer.com",
           name,
           phone,
           email,
           caseType: caseType || "Personal Injury",
           message: description || null,
+          leadType: "FORM_FILL",
         }),
       }).catch(() => {});
     }

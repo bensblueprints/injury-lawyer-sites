@@ -173,13 +173,11 @@ export default async function AttorneyDetailPage({
                         {site.practiceArea} · {site.city}, {site.state}
                       </div>
                     </div>
-                    <div className="text-right">
-                      <div className="text-green-400 text-sm font-bold">
-                        ${site.costPerLead.toFixed(0)}/lead
-                      </div>
-                      <div className="text-slate-500 text-xs">
-                        {site._count.leads} leads
-                      </div>
+                    <div className="text-right space-y-0.5">
+                      <div className="text-slate-400 text-xs">Form: <span className="text-white font-bold">${site.formFillPrice.toFixed(0)}</span></div>
+                      <div className="text-slate-400 text-xs">AI: <span className="text-purple-300 font-bold">${site.aiCallPrice.toFixed(0)}</span></div>
+                      <div className="text-slate-400 text-xs">Transfer: <span className="text-orange-300 font-bold">${site.hotTransferPrice.toFixed(0)}</span></div>
+                      <div className="text-slate-500 text-xs mt-1">{site._count.leads} leads</div>
                     </div>
                   </div>
                 ))}

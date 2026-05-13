@@ -155,6 +155,7 @@ export async function POST(request: NextRequest) {
           email,
           caseType: caseType || "Personal Injury",
           message: description || null,
+          leadType: "FORM_FILL",
         }),
       }).catch(() => {});
     }

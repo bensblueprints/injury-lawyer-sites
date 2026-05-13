@@ -24,16 +24,18 @@ model Attorney {
 }
 
 model Site {
-  id           String    @id @default(cuid())
-  domain       String    @unique
-  practiceArea String
-  city         String
-  state        String
-  costPerLead  Float     @default(0)
-  attorneyId   String?
-  attorney     Attorney? @relation(fields: [attorneyId], references: [id])
-  leads        Lead[]
-  createdAt    DateTime  @default(now())
+  id               String    @id @default(cuid())
+  domain           String    @unique
+  practiceArea     String
+  city             String
+  state            String
+  formFillPrice    Float     @default(0)
+  aiCallPrice      Float     @default(0)
+  hotTransferPrice Float     @default(0)
+  attorneyId       String?
+  attorney         Attorney? @relation(fields: [attorneyId], references: [id])
+  leads            Lead[]
+  createdAt        DateTime  @default(now())
 }
 
 model Lead {

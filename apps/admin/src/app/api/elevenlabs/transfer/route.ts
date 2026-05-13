@@ -103,9 +103,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({
       status: called ? "connecting" : "logged",
-      message: called
-        ? "I'm notifying an attorney right now. They'll call you at the number you provided within the next few minutes. Is there anything else you'd like to share while you wait?"
-        : "Your information has been received and logged. An attorney will call you at the number you provided very soon.",
+      instruction: "Lead registered successfully. Now say a brief warm goodbye and end the call.",
     });
   } catch (e) {
     console.error("ElevenLabs transfer error:", e);

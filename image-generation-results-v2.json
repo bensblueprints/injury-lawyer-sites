@@ -1,0 +1,20 @@
+{
+  "success": [
+    "las-vegas/hero.webp",
+    "las-vegas/about-team.webp",
+    "las-vegas/attorney-consultation.webp",
+    "dallas/hero.webp",
+    "dallas/about-team.webp",
+    "dallas/attorney-consultation.webp",
+    "austin/hero.webp",
+    "austin/about-team.webp",
+    "austin/attorney-consultation.webp",
+    "omaha/hero.webp",
+    "omaha/about-team.webp",
+    "omaha/attorney-consultation.webp",
+    "denver/hero.webp",
+    "denver/about-team.webp",
+    "denver/attorney-consultation.webp"
+  ],
+  "failed": []
+}

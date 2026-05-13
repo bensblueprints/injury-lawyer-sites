@@ -32,9 +32,7 @@ export function ExitIntentPopup({ config }: { config: SiteConfig }) {
             className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[90]"
             onClick={() => setOpen(false)}
           />
-          <motion.div
-            className="fixed inset-0 z-[91] flex items-center justify-center px-4 pointer-events-none"
-          >
+          <div className="fixed inset-0 z-[91] flex items-center justify-center px-4 pointer-events-none">
           <motion.div
             initial={{ opacity: 0, scale: 0.9, y: -20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -79,7 +77,7 @@ export function ExitIntentPopup({ config }: { config: SiteConfig }) {
               </div>
             </div>
           </motion.div>
-          </motion.div>
+          </div>
         </>
       )}
     </AnimatePresence>

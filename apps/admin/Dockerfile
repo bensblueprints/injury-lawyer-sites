@@ -31,9 +31,9 @@ COPY --from=builder /monorepo/apps/admin/public ./public
 COPY --from=builder --chown=nextjs:nodejs /monorepo/apps/admin/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /monorepo/apps/admin/.next/static ./apps/admin/.next/static
 
-# Prisma native binaries and CLI are not auto-included in standalone output
+# Prisma packages — native binaries, client, engines, and CLI
 COPY --from=builder --chown=nextjs:nodejs /monorepo/node_modules/.prisma ./node_modules/.prisma
-COPY --from=builder --chown=nextjs:nodejs /monorepo/node_modules/@prisma/client ./node_modules/@prisma/client
+COPY --from=builder --chown=nextjs:nodejs /monorepo/node_modules/@prisma ./node_modules/@prisma
 COPY --from=builder --chown=nextjs:nodejs /monorepo/node_modules/prisma ./node_modules/prisma
 
 # Copy prisma files for db push at startup

@@ -2,6 +2,7 @@ import { prisma } from "@/lib/prisma";
 import { AdminLayout } from "@/components/AdminLayout";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { SetPortalPassword } from "./SetPortalPassword";
 
 export const dynamic = "force-dynamic";
 
@@ -170,6 +171,11 @@ export default async function AttorneyDetailPage({
               </div>
             )}
           </div>
+        </div>
+
+        {/* Portal Password */}
+        <div className="mb-6">
+          <SetPortalPassword attorneyId={attorney.id} hasPassword={!!attorney.portalPassword} />
         </div>
 
         {/* Invoice History */}

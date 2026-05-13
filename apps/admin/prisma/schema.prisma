@@ -8,15 +8,16 @@ datasource db {
 }
 
 model Attorney {
-  id        String    @id @default(cuid())
-  name      String
-  firmName  String
-  email     String    @unique
-  phone     String
-  notes     String?
-  createdAt DateTime  @default(now())
-  sites     Site[]
-  invoices  Invoice[]
+  id             String    @id @default(cuid())
+  name           String
+  firmName       String
+  email          String    @unique
+  phone          String
+  notes          String?
+  portalPassword String?   // bcrypt hash — set by admin so attorney can log into /attorney portal
+  createdAt      DateTime  @default(now())
+  sites          Site[]
+  invoices       Invoice[]
 }
 
 model Site {
@@ -33,19 +34,20 @@ model Site {
 }
 
 model Lead {
-  id        String     @id @default(cuid())
-  domain    String
-  siteId    String?
-  site      Site?      @relation(fields: [siteId], references: [id])
-  name      String
-  phone     String
-  email     String
-  caseType  String
-  message   String?
-  status    LeadStatus @default(NEW)
-  invoiceId String?
-  invoice   Invoice?   @relation(fields: [invoiceId], references: [id])
-  createdAt DateTime   @default(now())
+  id             String     @id @default(cuid())
+  domain         String
+  siteId         String?
+  site           Site?      @relation(fields: [siteId], references: [id])
+  name           String
+  phone          String
+  email          String
+  caseType       String
+  message        String?
+  status         LeadStatus @default(NEW)
+  invoiceId      String?
+  invoice        Invoice?   @relation(fields: [invoiceId], references: [id])
+  conversationId String?    // ElevenLabs conversation ID for transcript lookup
+  createdAt      DateTime   @default(now())
 }
 
 enum LeadStatus {

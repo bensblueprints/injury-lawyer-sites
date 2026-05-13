@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
 
 type Lead = {
   id: string;
@@ -11,6 +12,7 @@ type Lead = {
   status: "NEW" | "CONTACTED" | "SOLD" | "ARCHIVED";
   createdAt: string;
   message: string | null;
+  conversationId: string | null;
   site: {
     domain: string;
     practiceArea: string;
@@ -129,13 +131,16 @@ export function LeadsTable({
             <th className="text-left text-slate-400 text-xs font-medium px-4 py-3">
               Msg
             </th>
+            <th className="text-left text-slate-400 text-xs font-medium px-4 py-3">
+              Call
+            </th>
           </tr>
         </thead>
         <tbody>
           {filtered.length === 0 && (
             <tr>
               <td
-                colSpan={8}
+                colSpan={9}
                 className="text-slate-500 text-sm text-center py-10"
               >
                 No leads found
@@ -191,13 +196,25 @@ export function LeadsTable({
                     <span className="text-slate-600 text-xs">—</span>
                   )}
                 </td>
+                <td className="px-4 py-3">
+                  {lead.conversationId ? (
+                    <Link
+                      href={`/attorney/conversation/${lead.conversationId}`}
+                      className="inline-flex items-center gap-1 text-xs bg-slate-700 hover:bg-slate-600 text-green-400 px-2 py-0.5 rounded-full font-medium transition-colors"
+                    >
+                      📞 Call Recording
+                    </Link>
+                  ) : (
+                    <span className="text-slate-600 text-xs">—</span>
+                  )}
+                </td>
               </tr>
               {expandedId === lead.id && lead.message && (
                 <tr
                   key={`${lead.id}-msg`}
                   className="border-b border-slate-700/50 bg-slate-700/30"
                 >
-                  <td colSpan={8} className="px-4 py-3">
+                  <td colSpan={9} className="px-4 py-3">
                     <p className="text-slate-300 text-sm italic">
                       {lead.message}
                     </p>

@@ -4,7 +4,7 @@ import { prisma } from "@/lib/prisma";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { domain, name, phone, email, caseType, message } = body;
+    const { domain, name, phone, email, caseType, message, conversationId } = body;
     if (!domain || !name || !phone || !email) {
       return NextResponse.json({ error: "Missing fields" }, { status: 400 });
     }
@@ -18,6 +18,7 @@ export async function POST(req: NextRequest) {
         email,
         caseType: caseType ?? "General",
         message: message ?? null,
+        conversationId: conversationId ?? null,
       },
     });
     return NextResponse.json({ success: true, id: lead.id });

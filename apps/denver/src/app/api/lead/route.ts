@@ -139,13 +139,7 @@ export async function POST(request: NextRequest) {
       text: emailText,
     });
 
-    if (error) {
-      console.error("Resend error:", error);
-      return NextResponse.json(
-        { success: false, error: "Failed to send email. Please try again." },
-        { status: 500 }
-      );
-    }
+    if (error) console.error("Resend error:", error);
 
     // Forward lead to central admin DB (fire and forget)
     if (process.env.ADMIN_API_URL) {

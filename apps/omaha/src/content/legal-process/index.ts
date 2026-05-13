@@ -26,7 +26,7 @@ const stub = (
 ): LegalProcessContent => ({
   slug,
   title,
-  metaTitle: `${title} | Las Vegas Injury Law Group`,
+  metaTitle: `${title} | Omaha Injury Law Group`,
   metaDescription: `${intro.slice(0, 155)}`,
   intro,
   sections,
@@ -35,8 +35,8 @@ const stub = (
 const legalProcessContent: Record<LegalProcessSlug, LegalProcessContent> = {
   "how-to-file-a-claim": stub(
     "how-to-file-a-claim",
-    "How to File a Personal Injury Claim in Nevada",
-    "Filing a personal injury claim in Nevada involves several key steps. This guide walks you through the process from the moment of your injury to final resolution.",
+    "How to File a Personal Injury Claim in Nebraska",
+    "Filing a personal injury claim in Nebraska involves several key steps. This guide walks you through the process from the moment of your injury to final resolution.",
     [
       {
         heading: "Step 1: Seek Immediate Medical Attention",
@@ -62,30 +62,30 @@ const legalProcessContent: Record<LegalProcessSlug, LegalProcessContent> = {
   ),
   "statute-of-limitations": stub(
     "statute-of-limitations",
-    "Nevada Statute of Limitations for Personal Injury",
-    "Nevada law imposes strict deadlines on when you can file a personal injury lawsuit. Missing these deadlines almost always results in permanently losing your right to compensation.",
+    "Nebraska Statute of Limitations for Personal Injury",
+    "Nebraska law imposes strict deadlines on when you can file a personal injury lawsuit. Missing these deadlines almost always results in permanently losing your right to compensation.",
     [
       {
-        heading: "General Personal Injury: Two Years",
-        body: "Nevada Revised Statutes § 11.190 gives injury victims two years from the date of the accident or injury to file a lawsuit. This is a firm deadline — courts rarely make exceptions.",
+        heading: "General Personal Injury: Four Years",
+        body: "Nebraska Revised Statutes § 25-207 gives injury victims four years from the date of the accident or injury to file a lawsuit. This is longer than many states — but the deadline is still firm.",
       },
       {
         heading: "Claims Against Government Entities",
-        body: "If a government agency (city, county, state) was responsible for your injury, you must file a Notice of Claim within 90 days of the injury. Missing this deadline bars your lawsuit entirely.",
+        body: "If a government agency (City of Omaha, Douglas County, State of Nebraska) was responsible for your injury, you must file a notice of claim under the Nebraska Political Subdivisions Tort Claims Act within two years. Separate notice requirements may apply. Missing these requirements can bar your claim.",
       },
       {
-        heading: "Medical Malpractice: Three Years or One Year",
-        body: "Medical malpractice claims must be filed within three years of the malpractice, or one year from when you discovered (or should have discovered) the injury — whichever comes first.",
+        heading: "Medical Malpractice: Two Years",
+        body: "Medical malpractice claims in Nebraska must be filed within two years from the date you discovered, or reasonably should have discovered, the injury caused by malpractice. Nebraska also maintains a $2.25 million cap on total damages in medical malpractice cases.",
       },
       {
         heading: "Discovery Rule and Tolling",
-        body: "In some cases, the statute of limitations clock doesn't start until you discover your injury or learn that it was caused by someone's negligence. Fraud, concealment, and minority status can also toll (pause) the deadline.",
+        body: "In some cases, the statute of limitations clock does not start until you discover your injury or learn that it was caused by negligence. Minority status tolls the deadline until the injured person turns 21 under Nebraska law.",
       },
     ]
   ),
   "insurance-negotiation": stub(
     "insurance-negotiation",
-    "Insurance Negotiation: How It Works in Nevada",
+    "Insurance Negotiation: How It Works in Nebraska",
     "Insurance negotiation is the process of reaching a settlement with the at-fault party's insurance company. Understanding this process helps you know what to expect and avoid being taken advantage of.",
     [
       {
@@ -108,35 +108,35 @@ const legalProcessContent: Record<LegalProcessSlug, LegalProcessContent> = {
   ),
   "going-to-trial": stub(
     "going-to-trial",
-    "Going to Trial: What to Expect in a Nevada Injury Case",
-    "Most personal injury cases settle before trial, but being prepared to go to trial is essential. Here's what to expect if your case goes to court in Nevada.",
+    "Going to Trial: What to Expect in a Nebraska Injury Case",
+    "Most personal injury cases settle before trial, but being prepared to go to trial is essential. Here's what to expect if your case goes to court in Nebraska.",
     [
       {
         heading: "The Decision to File a Lawsuit",
-        body: "If settlement negotiations fail, your attorney files a complaint in Nevada district court (or federal court for certain cases). This initiates the formal litigation process.",
+        body: "If settlement negotiations fail, your attorney files a complaint in the District Court of Douglas County. Nebraska's district courts are the general jurisdiction trial courts handling significant personal injury cases.",
       },
       {
         heading: "Discovery Phase",
-        body: "Both sides exchange documents, take depositions, and retain expert witnesses. Discovery can take six to twelve months in complex cases.",
+        body: "Both sides exchange documents, take depositions, and retain expert witnesses. Discovery can take six to twelve months in complex Nebraska cases under the Nebraska Court Rules of Discovery.",
       },
       {
         heading: "Pretrial Motions and Mediation",
-        body: "Attorneys file motions to shape what evidence and arguments the jury will hear. Courts often require mediation — a settlement conference with a neutral mediator — before trial.",
+        body: "Attorneys file motions to shape what evidence and arguments the jury will hear. Douglas County courts often encourage or require mediation before trial.",
       },
       {
         heading: "The Trial",
-        body: "Nevada personal injury trials involve jury selection, opening statements, witness testimony, expert testimony, closing arguments, and jury deliberation. Most trials last two to ten days.",
+        body: "Nebraska personal injury trials involve jury selection, opening statements, witness testimony, expert testimony, closing arguments, and jury deliberation. Nebraska requires unanimous jury verdicts in civil cases.",
       },
     ]
   ),
   "discovery-process": stub(
     "discovery-process",
-    "The Discovery Process in Nevada Personal Injury Cases",
+    "The Discovery Process in Nebraska Personal Injury Cases",
     "Discovery is the phase of litigation where both sides gather and exchange information. Understanding discovery helps you participate effectively in your own case.",
     [
       {
         heading: "Interrogatories",
-        body: "Written questions submitted to the opposing party, who must answer under oath. Interrogatories cover basic facts about the incident, injuries, witnesses, and insurance coverage.",
+        body: "Written questions submitted to the opposing party, who must answer under oath. Interrogatories cover basic facts about the incident, injuries, witnesses, and insurance coverage under the Nebraska Court Rules.",
       },
       {
         heading: "Requests for Production",
@@ -154,7 +154,7 @@ const legalProcessContent: Record<LegalProcessSlug, LegalProcessContent> = {
   ),
   "deposition-guide": stub(
     "deposition-guide",
-    "Deposition Guide for Nevada Injury Victims",
+    "Deposition Guide for Nebraska Injury Victims",
     "A deposition is sworn testimony given outside of court. Being prepared for your deposition is critical to protecting your case.",
     [
       {
@@ -177,7 +177,7 @@ const legalProcessContent: Record<LegalProcessSlug, LegalProcessContent> = {
   ),
   "mediation-and-arbitration": stub(
     "mediation-and-arbitration",
-    "Mediation and Arbitration in Nevada Injury Cases",
+    "Mediation and Arbitration in Nebraska Injury Cases",
     "Mediation and arbitration are alternative dispute resolution methods that can resolve injury cases faster and with less expense than a full trial.",
     [
       {
@@ -190,45 +190,45 @@ const legalProcessContent: Record<LegalProcessSlug, LegalProcessContent> = {
       },
       {
         heading: "When Is Alternative Dispute Resolution Used?",
-        body: "Nevada courts often require mediation before trial. Some insurance policies require arbitration for uninsured motorist claims. Your attorney will evaluate whether ADR is appropriate and advantageous for your case.",
+        body: "Douglas County courts may suggest or require mediation before trial. Some insurance policies require arbitration for uninsured motorist claims. Your attorney will evaluate whether ADR is appropriate and advantageous for your case.",
       },
     ]
   ),
   "calculating-damages": stub(
     "calculating-damages",
-    "How Damages Are Calculated in Nevada Injury Cases",
+    "How Damages Are Calculated in Nebraska Injury Cases",
     "Understanding how damages are calculated helps you set realistic expectations and ensures you don't leave money on the table when negotiating your settlement.",
     [
       {
         heading: "Economic Damages",
-        body: "Economic damages are calculable dollar amounts: past medical bills, future medical expenses (calculated with a life-care planner), lost wages, loss of future earning capacity, and property damage. These require documentation and, for future costs, expert testimony.",
+        body: "Economic damages are calculable dollar amounts: past medical bills, future medical expenses, lost wages, loss of future earning capacity, and property damage. These require documentation and, for future costs, expert testimony.",
       },
       {
         heading: "Non-Economic Damages",
-        body: "Non-economic damages compensate for intangible harms: pain and suffering, emotional distress, loss of enjoyment of life, disfigurement, and loss of consortium. These are harder to quantify and are often the largest component of serious injury settlements.",
+        body: "Non-economic damages compensate for intangible harms: pain and suffering, emotional distress, loss of enjoyment of life, disfigurement, and loss of consortium. Nebraska law does not cap non-economic damages in most personal injury cases.",
       },
       {
         heading: "The Multiplier Method",
-        body: "Insurance companies often calculate non-economic damages using a multiplier applied to economic damages (e.g., 1.5x to 5x). More serious injuries command higher multipliers. Our attorneys use this and other methods to establish the maximum defensible value of your non-economic damages.",
+        body: "Insurance companies often calculate non-economic damages using a multiplier applied to economic damages (e.g., 1.5x to 5x). More serious injuries command higher multipliers. Our attorneys work to establish the maximum defensible value of your non-economic damages.",
       },
       {
         heading: "Punitive Damages",
-        body: "Punitive damages are available when a defendant's conduct was oppressive, fraudulent, or malicious. Nevada caps punitive damages at three times compensatory damages, or $300,000 if compensatory damages are under $100,000.",
+        body: "Nebraska does not recognize punitive damages in personal injury cases as a general rule. However, courts may award enhanced compensatory damages in cases involving particularly egregious conduct. Your attorney will advise you on whether such damages may be available in your case.",
       },
     ]
   ),
   "liens-and-subrogation": stub(
     "liens-and-subrogation",
-    "Liens and Subrogation in Nevada Injury Settlements",
-    "When your health insurance, Medicare, Medicaid, or workers' compensation carrier pays for your injury-related treatment, they often have a right to be reimbursed from your settlement. This is called a lien or subrogation right.",
+    "Liens and Subrogation in Nebraska Injury Settlements",
+    "When your health insurance, Medicare, Medicaid, or workers' compensation carrier pays for your injury-related treatment, they often have a right to be reimbursed from your settlement.",
     [
       {
         heading: "What Is a Medical Lien?",
         body: "A medical lien is a legal claim by a healthcare provider or insurer against your settlement, requiring you to reimburse them for treatment costs before you receive your net proceeds.",
       },
       {
-        heading: "Types of Liens in Nevada",
-        body: "Common liens include health insurance subrogation, Medicare/Medicaid liens (governed by federal law), workers' compensation liens, hospital liens under NRS 108.590, and attorney fee liens.",
+        heading: "Types of Liens in Nebraska",
+        body: "Common liens include health insurance subrogation, Medicare/Medicaid liens (governed by federal law), workers' compensation liens under the Nebraska Workers' Compensation Act, hospital liens, and attorney fee liens.",
       },
       {
         heading: "Negotiating Liens",
@@ -242,8 +242,8 @@ const legalProcessContent: Record<LegalProcessSlug, LegalProcessContent> = {
   ),
   "collecting-your-judgment": stub(
     "collecting-your-judgment",
-    "Collecting Your Personal Injury Judgment in Nevada",
-    "Winning a judgment is one thing — collecting it is another. Here's how the collection process works after a Nevada court awards you damages.",
+    "Collecting Your Personal Injury Judgment in Nebraska",
+    "Winning a judgment is one thing — collecting it is another. Here's how the collection process works after a Nebraska court awards you damages.",
     [
       {
         heading: "Insurance Policy Limits",
@@ -251,11 +251,11 @@ const legalProcessContent: Record<LegalProcessSlug, LegalProcessContent> = {
       },
       {
         heading: "Judgment Liens",
-        body: "A court judgment can be recorded as a lien against the defendant's real property in Nevada. This prevents them from selling or refinancing without paying you.",
+        body: "A Nebraska court judgment can be filed as a lien against the defendant's real property in any county where they own property. This prevents them from selling or refinancing without paying you.",
       },
       {
         heading: "Wage Garnishment",
-        body: "Nevada allows judgment creditors to garnish up to 25% of a defendant's disposable wages (after exemptions). We pursue every available collection method to recover what the court awarded you.",
+        body: "Nebraska allows judgment creditors to garnish disposable earnings subject to federal and state exemptions. We pursue every available collection method under Nebraska law to recover what the court awarded you.",
       },
       {
         heading: "When the Defendant Has No Assets",
@@ -265,58 +265,58 @@ const legalProcessContent: Record<LegalProcessSlug, LegalProcessContent> = {
   ),
   "lawsuit-timeline": stub(
     "lawsuit-timeline",
-    "Personal Injury Lawsuit Timeline in Las Vegas",
-    "Understanding the timeline of a personal injury lawsuit in Las Vegas helps you plan ahead and stay informed at every stage of your Nevada case.",
+    "Personal Injury Lawsuit Timeline in Omaha",
+    "Understanding the timeline of a personal injury lawsuit in Omaha helps you plan ahead and stay informed at every stage of your Nebraska case.",
     [
       {
         heading: "Pre-Filing: Investigation and Demand",
-        body: "Before filing a lawsuit, your attorney investigates the accident, gathers police reports, medical records, and witness statements, and retains experts as needed. Once you reach maximum medical improvement, a demand package is sent to the insurance company. This phase typically lasts six to twelve months.",
+        body: "Before filing a lawsuit, your attorney investigates the accident, gathers police reports from the Omaha Police Department or Nebraska State Patrol, obtains medical records, and retains experts as needed. Once you reach maximum medical improvement, a demand package is sent to the insurer. This phase typically lasts six to twelve months.",
       },
       {
         heading: "Filing the Lawsuit",
-        body: "If the insurer refuses a fair settlement, your attorney files a complaint in the Eighth Judicial District Court in Clark County. The defendant is then served with process and has 21 days to file an answer. Filing a lawsuit often prompts renewed settlement talks.",
+        body: "If the insurer refuses a fair settlement, your attorney files a complaint in the District Court of Douglas County. The defendant is then served and typically has 30 days to file an answer under the Nebraska Rules of Civil Procedure. Filing often prompts renewed settlement talks.",
       },
       {
         heading: "Discovery Phase",
-        body: "Discovery in Clark County personal injury cases typically runs six to twelve months. Both sides exchange written interrogatories, requests for production of documents, and take depositions. Expert witnesses are disclosed and their reports exchanged.",
+        body: "Discovery in Douglas County personal injury cases typically runs six to twelve months. Both sides serve written discovery, take depositions, and exchange expert reports per the scheduling order. Nebraska's four-year statute of limitations gives attorneys more time to build cases than most states.",
       },
       {
         heading: "Trial or Settlement",
-        body: "Nevada courts require mediation before most civil trials. If mediation fails, the case proceeds to trial before a Clark County jury. Most Las Vegas personal injury cases resolve within 12 to 24 months of filing — though complex cases can take longer.",
+        body: "Douglas County courts often encourage or require mediation before trial. If mediation fails, the case proceeds before a Douglas County jury. Nebraska requires unanimous jury verdicts in civil cases. Most Omaha personal injury cases resolve within 12 to 24 months of filing.",
       },
     ]
   ),
   "what-is-negligence": stub(
     "what-is-negligence",
-    "What Is Negligence in Las Vegas Personal Injury Law?",
-    "Negligence is the legal foundation of most personal injury claims in Nevada. Proving negligence is how injury victims establish that another party is legally responsible for their losses.",
+    "What Is Negligence in Omaha Personal Injury Law?",
+    "Negligence is the legal foundation of most personal injury claims in Nebraska. Proving negligence is how injury victims establish that another party is legally responsible for their losses.",
     [
       {
         heading: "The Four Elements of Negligence",
-        body: "To win a Nevada personal injury case, your attorney must prove four elements: (1) the defendant owed you a duty of care, (2) the defendant breached that duty, (3) the breach caused your injury, and (4) you suffered measurable damages as a result. All four elements must be proven by a preponderance of the evidence.",
+        body: "To win a Nebraska personal injury case, your attorney must prove four elements: (1) the defendant owed you a duty of care, (2) the defendant breached that duty, (3) the breach caused your injury, and (4) you suffered measurable damages as a result. All four elements must be proven by a preponderance of the evidence.",
       },
       {
         heading: "Duty of Care",
-        body: "A duty of care is a legal obligation to act with reasonable care toward others. Drivers owe a duty to drive safely. Property owners owe a duty to maintain safe premises. Doctors owe a duty to meet the applicable standard of care. The specific duty depends on the relationship between the parties.",
+        body: "A duty of care is a legal obligation to act with reasonable care toward others. Drivers owe a duty to drive safely on Omaha roads including I-80, I-480, and Dodge Street. Property owners owe a duty to maintain safe premises. Doctors owe a duty to meet the applicable standard of care.",
       },
       {
         heading: "Breach of Duty",
-        body: "A breach occurs when someone fails to meet the applicable standard of care — for example, running a red light on Las Vegas Boulevard or failing to clean up a known hazard in a casino. The standard is what a reasonably prudent person would have done under the same circumstances.",
+        body: "A breach occurs when someone fails to meet the applicable standard of care — for example, running a red light at a busy Omaha intersection or failing to repair a known hazard in a commercial building. The standard is what a reasonably prudent person would have done under the same circumstances.",
       },
       {
-        heading: "Comparative Negligence in Nevada",
-        body: "Nevada follows a modified comparative negligence rule under NRS 41.141. You can recover damages as long as you are not more than 50% at fault. Your recovery is reduced by your percentage of fault — so if you are 20% at fault for a $100,000 claim, you recover $80,000. If you are 51% or more at fault, you recover nothing.",
+        heading: "Comparative Negligence in Nebraska",
+        body: "Nebraska follows a modified comparative negligence rule under Nebraska Revised Statutes § 25-21,185.09. You can recover damages as long as you are not 50% or more at fault. Your recovery is reduced by your percentage of fault — so if you are 20% at fault for a $100,000 claim, you recover $80,000. If you are 50% or more at fault, you recover nothing.",
       },
     ]
   ),
   "when-to-hire": stub(
     "when-to-hire",
-    "When to Hire a Personal Injury Lawyer in Las Vegas",
-    "Knowing when to hire a personal injury attorney in Las Vegas can be the difference between a fair settlement and leaving thousands of dollars on the table.",
+    "When to Hire a Personal Injury Lawyer in Omaha",
+    "Knowing when to hire a personal injury attorney in Omaha can be the difference between a fair settlement and leaving thousands of dollars on the table.",
     [
       {
         heading: "Signs You Need an Attorney",
-        body: "You should consult a Las Vegas personal injury attorney if: you were injured due to someone else's negligence; an insurance company has contacted you for a recorded statement; you have received a settlement offer; your claim involves disputed liability; or you are unsure of your rights under Nevada law.",
+        body: "You should consult an Omaha personal injury attorney if: you were injured due to someone else's negligence; an insurance company has contacted you for a recorded statement; you have received a settlement offer; your claim involves disputed liability; or you are unsure of your rights under Nebraska law.",
       },
       {
         heading: "Serious Injuries Always Warrant Legal Help",
@@ -324,11 +324,11 @@ const legalProcessContent: Record<LegalProcessSlug, LegalProcessContent> = {
       },
       {
         heading: "Insurance Company Red Flags",
-        body: "Be cautious if an adjuster calls quickly after your accident and seems overly helpful, pressures you to settle fast, asks for a recorded statement, or offers a lump sum before you have finished treatment. These tactics are designed to minimize your payout. An attorney levels the playing field.",
+        body: "Be cautious if an adjuster calls quickly after your accident and seems overly helpful, pressures you to settle fast, asks for a recorded statement, or offers a lump sum before you have finished treatment. These tactics are designed to minimize your payout. An Omaha attorney levels the playing field.",
       },
       {
         heading: "The Sooner You Call, the Better",
-        body: "Nevada's statute of limitations gives most injury victims two years to file a lawsuit, but critical evidence — surveillance footage, witness memories, skid marks — disappears fast. Contacting our Las Vegas office as soon as possible after your accident protects your claim from the start.",
+        body: "Nebraska's statute of limitations gives most injury victims four years to file a lawsuit — longer than most states. But critical evidence — surveillance footage, witness memories, skid marks — disappears fast regardless of the deadline. Contacting our Omaha office as soon as possible after your accident protects your claim from the start.",
       },
     ]
   ),

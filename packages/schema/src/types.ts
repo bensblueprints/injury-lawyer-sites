@@ -22,6 +22,7 @@ export interface SiteConfig {
   description: string;
   tagline: string;
   elevenLabsAgentId?: string;
+  serviceAreas?: Array<{ label: string; slug: string }>;
 }
 
 export interface FAQ {

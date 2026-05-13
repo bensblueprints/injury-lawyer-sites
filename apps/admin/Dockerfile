@@ -4,6 +4,8 @@ FROM base AS deps
 WORKDIR /monorepo
 COPY package.json package-lock.json turbo.json ./
 COPY apps/admin/package.json ./apps/admin/
+COPY packages/ui/package.json ./packages/ui/
+COPY packages/schema/package.json ./packages/schema/
 RUN npm install --legacy-peer-deps
 
 FROM base AS builder

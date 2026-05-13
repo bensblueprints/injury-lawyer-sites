@@ -7,6 +7,12 @@ export const RESOURCE_SLUGS = [
   "evidence-preservation-guide",
   "nevada-court-guide",
   "recovery-timeline",
+  "local-resources",
+  "accident-reports",
+  "hospitals",
+  "accident-statistics",
+  "court-system",
+  "insurance-companies",
 ] as const;
 
 export type ResourceSlug = (typeof RESOURCE_SLUGS)[number];
@@ -171,6 +177,168 @@ const resourceContent: Record<ResourceSlug, ResourceContent> = {
       {
         heading: "Months 12–36+: Litigation (If Necessary)",
         body: "Litigation involves filing the complaint, completing discovery (depositions, document exchange, expert reports), pretrial motions, and potentially a trial. Complex cases may take two to three years from injury to trial.",
+      },
+    ],
+  },
+  "local-resources": {
+    slug: "local-resources",
+    title: "Local Resources for Injury Victims in Las Vegas",
+    metaTitle: "Local Resources for Injury Victims | Las Vegas Injury Law Group",
+    metaDescription:
+      "A guide to local emergency services, hospitals, courts, and support resources for accident victims in Las Vegas and Clark County, Nevada.",
+    intro:
+      "If you or a loved one has been injured in Las Vegas, knowing where to turn for help is critical. This page compiles key local resources for Clark County injury victims.",
+    sections: [
+      {
+        heading: "Emergency Services",
+        body: "Las Vegas Metro Police Department (LVMPD): Non-emergency line (702) 828-3111. Clark County Fire Department: (702) 455-7316. Nevada Highway Patrol Las Vegas: (702) 486-4100. For all emergencies, dial 911.",
+      },
+      {
+        heading: "Hospitals and Trauma Centers",
+        body: "University Medical Center (UMC) — 1800 W. Charleston Blvd — Clark County's only Level I Trauma Center. Sunrise Hospital & Medical Center — 3186 Maryland Pkwy — Level II Trauma. Valley Hospital Medical Center — 620 Shadow Lane. Centennial Hills Hospital — 6900 N. Durango Dr.",
+      },
+      {
+        heading: "Courts and Government Offices",
+        body: "Eighth Judicial District Court (Clark County): 200 Lewis Ave, Las Vegas, NV 89155. Clark County Clerk's Office: (702) 671-0500. Nevada DMV (Las Vegas): 2701 E. Sahara Ave. Clark County Risk Management: (702) 455-3895.",
+      },
+      {
+        heading: "Victim Support and Legal Aid",
+        body: "Nevada Legal Services: (702) 386-0404 — free civil legal aid for qualifying individuals. Clark County Victim Services: (702) 671-4271. Nevada Coalition Against Sexual Violence: 1-800-992-5757. Nevada 211: Dial 2-1-1 for social service referrals statewide.",
+      },
+    ],
+  },
+  "accident-reports": {
+    slug: "accident-reports",
+    title: "How to Get Accident Reports in Las Vegas and Nevada",
+    metaTitle: "How to Get Accident Reports in Las Vegas | Las Vegas Injury Law Group",
+    metaDescription:
+      "Step-by-step guide to obtaining police accident reports, DMV records, and incident reports after a crash in Las Vegas or Clark County, Nevada.",
+    intro:
+      "Obtaining the official accident report is one of the most important steps after a crash in Las Vegas. This guide explains how to request reports from LVMPD, Nevada Highway Patrol, and the Nevada DMV.",
+    sections: [
+      {
+        heading: "Las Vegas Metro Police Department Reports",
+        body: "LVMPD accident reports can be requested online at lvmpd.com, by mail to LVMPD Records & Fingerprint Bureau (400 S. Martin L. King Blvd., Las Vegas, NV 89106), or in person. Reports are typically available 5–10 business days after the crash. The fee is approximately $12 per report.",
+      },
+      {
+        heading: "Nevada Highway Patrol Reports",
+        body: "Crashes on Nevada state highways and interstates are handled by the Nevada Highway Patrol. NHP reports can be ordered through the NHP Records Unit at (775) 687-5300 or online at nhp.nv.gov. Processing time is 7–14 business days.",
+      },
+      {
+        heading: "Nevada DMV Crash Records",
+        body: "The Nevada DMV maintains statewide crash records. You can request a certified crash report through the DMV's Records Section at dmvnv.com or by visiting a Las Vegas DMV office. You will need the crash date, location, and the names of the parties involved.",
+      },
+      {
+        heading: "Why Accident Reports Matter",
+        body: "The official police report documents fault findings, citations issued, witness information, road and weather conditions, and vehicle damage. It is a foundational piece of evidence in any insurance claim or personal injury lawsuit. Your attorney uses this report to establish liability.",
+      },
+    ],
+  },
+  "hospitals": {
+    slug: "hospitals",
+    title: "Major Hospitals Near Las Vegas for Injury Treatment",
+    metaTitle: "Major Hospitals in Las Vegas for Injury Treatment | Las Vegas Injury Law Group",
+    metaDescription:
+      "A guide to major hospitals, trauma centers, and urgent care facilities in Las Vegas and Clark County for accident and injury victims.",
+    intro:
+      "After a serious accident in Las Vegas, getting to the right medical facility quickly can save your life and strengthen your injury claim. Here are the major hospitals and trauma centers serving the Las Vegas Valley.",
+    sections: [
+      {
+        heading: "Level I Trauma Center",
+        body: "University Medical Center of Southern Nevada (UMC) — 1800 W. Charleston Blvd, Las Vegas, NV 89102 — (702) 383-2000. UMC is Clark County's only Level I Trauma Center, capable of handling the most severe traumatic injuries including spinal cord injuries, traumatic brain injuries, and multi-system trauma.",
+      },
+      {
+        heading: "Level II Trauma Centers",
+        body: "Sunrise Hospital & Medical Center — 3186 S. Maryland Pkwy, Las Vegas, NV 89109 — (702) 731-8000. Sunrise Children's Hospital (pediatric trauma) is co-located on the same campus. St. Rose Dominican Hospital – Rose de Lima Campus — 102 E. Lake Mead Pkwy, Henderson — also serves southern Clark County.",
+      },
+      {
+        heading: "Other Major Hospitals",
+        body: "Valley Hospital Medical Center — 620 Shadow Ln, Las Vegas — (702) 388-4000. Desert Springs Hospital — 2075 E. Flamingo Rd — (702) 369-7500. Spring Valley Hospital — 5400 S. Rainbow Blvd — (702) 853-3000. Centennial Hills Hospital — 6900 N. Durango Dr — (702) 835-9700.",
+      },
+      {
+        heading: "Urgent Care and After-Hours Options",
+        body: "For non-life-threatening injuries, CityMD, MountainView Urgent Care, and Concentra Medical Centers operate multiple Las Vegas Valley locations with extended hours. Documenting injuries promptly at any licensed medical facility — including urgent care — creates a critical medical record for your claim.",
+      },
+    ],
+  },
+  "accident-statistics": {
+    slug: "accident-statistics",
+    title: "Las Vegas Accident Statistics and Traffic Safety Data",
+    metaTitle: "Las Vegas Accident Statistics | Las Vegas Injury Law Group",
+    metaDescription:
+      "Traffic crash statistics, dangerous intersections, and injury trends in Las Vegas and Clark County, Nevada.",
+    intro:
+      "Las Vegas consistently ranks among the most dangerous cities for pedestrians and drivers alike. Understanding local accident statistics underscores why experienced legal representation matters after a crash.",
+    sections: [
+      {
+        heading: "Statewide and Clark County Crash Data",
+        body: "Nevada reports approximately 300–330 traffic fatalities per year, with Clark County accounting for roughly 60% of all fatalities statewide. The Nevada Department of Transportation (NDOT) publishes annual crash summaries at nevadadot.com. In recent years, Las Vegas has averaged over 12,000 injury-causing crashes annually within Clark County.",
+      },
+      {
+        heading: "Pedestrian and Cyclist Danger",
+        body: "Las Vegas consistently ranks in the top 10 most dangerous large metro areas for pedestrian fatalities in the U.S., according to the Governors Highway Safety Association. The Strip corridor and surrounding blocks account for a disproportionate share of pedestrian fatalities. Alcohol, distracted driving, and inadequate crosswalk signaling are leading contributing factors.",
+      },
+      {
+        heading: "Most Dangerous Intersections",
+        body: "Historically high-crash intersections in the Las Vegas Valley include Charleston Blvd & Rainbow Blvd, Tropicana Ave & Pecos Rd, Flamingo Rd & Maryland Pkwy, and Craig Rd & Losee Rd in North Las Vegas. LVMPD and NDOT publish intersection crash data updated annually.",
+      },
+      {
+        heading: "DUI and Impaired Driving Trends",
+        body: "Nevada has one of the highest rates of alcohol-involved traffic fatalities in the nation. LVMPD conducts hundreds of DUI arrests each year during holiday enforcement campaigns. DUI crashes often result in severe injuries and may support punitive damages claims against the at-fault driver.",
+      },
+    ],
+  },
+  "court-system": {
+    slug: "court-system",
+    title: "Las Vegas Court System Guide for Injury Victims",
+    metaTitle: "Las Vegas Court System Guide | Las Vegas Injury Law Group",
+    metaDescription:
+      "Understand which Las Vegas and Clark County courts handle personal injury cases and how the Nevada court system works for injury victims.",
+    intro:
+      "If your personal injury case proceeds to litigation in Las Vegas, it will be handled by one of several courts depending on the amount at stake. Here is what injury victims need to know about the Clark County court system.",
+    sections: [
+      {
+        heading: "Justice Court: Claims Under $15,000",
+        body: "Small personal injury claims (under $15,000) are filed in one of the Clark County Justice Courts — Las Vegas Justice Court, Henderson Justice Court, or North Las Vegas Justice Court, depending on where the incident occurred. Las Vegas Justice Court: 200 Lewis Ave, Las Vegas, NV 89155.",
+      },
+      {
+        heading: "Eighth Judicial District Court",
+        body: "Claims over $15,000 are filed in the Eighth Judicial District Court of Nevada — Clark County's general jurisdiction trial court. Address: Regional Justice Center, 200 Lewis Ave, Las Vegas, NV 89155. Phone: (702) 671-0500. This court handles the vast majority of significant personal injury lawsuits in the Las Vegas area.",
+      },
+      {
+        heading: "Federal District Court",
+        body: "Cases involving parties from different states (diversity jurisdiction) with damages over $75,000, or cases involving federal law, may be filed in the U.S. District Court for the District of Nevada — Las Vegas Division, located at 333 Las Vegas Blvd S., Las Vegas, NV 89101.",
+      },
+      {
+        heading: "Short Trial Program",
+        body: "Nevada offers a Short Trial program for cases in which damages are between $2,500 and $75,000. Short trials are decided by a jury of four and are limited in length. This program can resolve cases more quickly and cost-effectively than standard district court litigation.",
+      },
+    ],
+  },
+  "insurance-companies": {
+    slug: "insurance-companies",
+    title: "Dealing with Insurance Companies in Las Vegas and Nevada",
+    metaTitle: "Dealing with Insurance Companies in Las Vegas | Las Vegas Injury Law Group",
+    metaDescription:
+      "What to know about dealing with insurance adjusters and insurance companies after an accident in Las Vegas and Nevada.",
+    intro:
+      "Insurance companies operating in Nevada are required to act in good faith — but that does not mean they will treat you fairly. Understanding how insurers operate helps you protect your claim from the moment of your accident.",
+    sections: [
+      {
+        heading: "Major Auto Insurers in Nevada",
+        body: "The largest auto insurers in Nevada include State Farm, GEICO, Progressive, Allstate, Farmers, USAA, and Travelers. Each has dedicated claims departments staffed by adjusters whose job is to resolve claims at the lowest possible cost. Despite their advertising, their interests are not aligned with yours.",
+      },
+      {
+        heading: "Nevada Bad Faith Insurance Law",
+        body: "Under Nevada Revised Statutes Chapter 686A, insurance companies must investigate claims promptly, communicate claim status, and make fair settlement offers based on the evidence. Violations can give rise to bad faith claims under NRS 686A.310, potentially entitling you to damages beyond your underlying claim.",
+      },
+      {
+        heading: "Common Insurance Adjuster Tactics",
+        body: "Adjusters are trained to: call immediately after an accident while you are off-guard; request recorded statements; offer low-ball settlements before you understand your full damages; create delays hoping you'll become financially desperate; and scrutinize your medical treatment for gaps or inconsistencies. Never speak with an opposing insurer without your attorney present.",
+      },
+      {
+        heading: "Negotiation Tips and When to Involve an Attorney",
+        body: "Never accept a first offer. Never sign a release without legal review. Do not provide a recorded statement to the at-fault driver's insurer. If an adjuster denies your claim, disputes liability, or offers less than your documented damages, contact our Las Vegas office immediately. Most personal injury attorneys — including ours — work on contingency, so there is no cost to consult.",
       },
     ],
   },

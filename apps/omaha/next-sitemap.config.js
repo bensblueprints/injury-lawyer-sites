@@ -14,8 +14,5 @@ module.exports = {
         disallow: ["/api/"],
       },
     ],
-    additionalSitemaps: [
-      "https://omahanebraskainjurylawyer.com/sitemap.xml",
-    ],
   },
 };

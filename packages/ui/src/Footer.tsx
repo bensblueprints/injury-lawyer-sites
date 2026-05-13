@@ -3,26 +3,25 @@ import type { SiteConfig } from "@injury/schema";
 import { LeadForm } from "./LeadForm";
 
 const practiceAreaLinks = [
-  { label: "Car Accidents", slug: "car-accidents" },
-  { label: "Truck Accidents", slug: "truck-accidents" },
-  { label: "Motorcycle Accidents", slug: "motorcycle-accidents" },
-  { label: "Pedestrian Accidents", slug: "pedestrian-accidents" },
-  { label: "Bicycle Accidents", slug: "bicycle-accidents" },
-  { label: "Slip & Fall", slug: "slip-and-fall" },
-  { label: "Premises Liability", slug: "premises-liability" },
-  { label: "Medical Malpractice", slug: "medical-malpractice" },
-  { label: "Wrongful Death", slug: "wrongful-death" },
-  { label: "Dog Bites", slug: "dog-bites" },
-  { label: "Workers' Compensation", slug: "workers-compensation" },
-  { label: "Construction Accidents", slug: "construction-accidents" },
-  { label: "Rideshare Accidents", slug: "rideshare-accidents" },
-  { label: "Bus Accidents", slug: "bus-accidents" },
-  { label: "Product Liability", slug: "product-liability" },
-  { label: "Brain Injuries", slug: "traumatic-brain-injuries" },
-  { label: "Spinal Injuries", slug: "spinal-cord-injuries" },
-  { label: "Burn Injuries", slug: "burn-injuries" },
-  { label: "Nursing Home Abuse", slug: "nursing-home-abuse" },
-  { label: "Catastrophic Injuries", slug: "catastrophic-injuries" },
+  { label: "Car Accidents", slug: "car-accident-lawyer" },
+  { label: "Truck Accidents", slug: "truck-accident-lawyer" },
+  { label: "Motorcycle Accidents", slug: "motorcycle-accident-lawyer" },
+  { label: "Pedestrian Accidents", slug: "pedestrian-accident-lawyer" },
+  { label: "Bicycle Accidents", slug: "bicycle-accident-lawyer" },
+  { label: "Slip & Fall", slug: "slip-and-fall-lawyer" },
+  { label: "Premises Liability", slug: "premises-liability-lawyer" },
+  { label: "Medical Malpractice", slug: "medical-malpractice-lawyer" },
+  { label: "Wrongful Death", slug: "wrongful-death-lawyer" },
+  { label: "Dog Bites", slug: "dog-bite-lawyer" },
+  { label: "Workers' Compensation", slug: "workers-compensation-lawyer" },
+  { label: "Construction Accidents", slug: "construction-accident-lawyer" },
+  { label: "Rideshare Accidents", slug: "rideshare-accident-lawyer" },
+  { label: "Bus Accidents", slug: "bus-accident-lawyer" },
+  { label: "Product Liability", slug: "product-liability-lawyer" },
+  { label: "Brain Injuries", slug: "brain-injury-lawyer" },
+  { label: "Spinal Injuries", slug: "spinal-cord-injury-lawyer" },
+  { label: "Burn Injuries", slug: "burn-injury-lawyer" },
+  { label: "Catastrophic Injuries", slug: "catastrophic-injury-lawyer" },
 ];
 
 const legalLinks = [
@@ -30,12 +29,12 @@ const legalLinks = [
   { label: "Lawsuit Timeline", slug: "legal-process/lawsuit-timeline" },
   { label: "Statute of Limitations", slug: "legal-process/statute-of-limitations" },
   { label: "What Is Negligence?", slug: "legal-process/what-is-negligence" },
-  { label: "How Much Is My Case Worth?", slug: "legal-process/case-value" },
-  { label: "Dealing with Insurance", slug: "legal-process/dealing-with-insurance" },
+  { label: "How Much Is My Case Worth?", slug: "legal-process/calculating-damages" },
+  { label: "Dealing with Insurance", slug: "legal-process/insurance-negotiation" },
   { label: "When to Hire a Lawyer", slug: "legal-process/when-to-hire" },
-  { label: "General FAQ", slug: "faq/general" },
-  { label: "Car Accident FAQ", slug: "faq/car-accident" },
-  { label: "Settlement FAQ", slug: "faq/settlement" },
+  { label: "General FAQ", slug: "faq/general-personal-injury" },
+  { label: "Car Accident FAQ", slug: "faq/car-accidents" },
+  { label: "Settlement FAQ", slug: "faq/settlement-process" },
 ];
 
 export function Footer({ config }: { config: SiteConfig }) {
@@ -155,6 +154,28 @@ export function Footer({ config }: { config: SiteConfig }) {
           </div>
         </div>
       </div>
+
+      {/* Service Areas */}
+      {config.serviceAreas && config.serviceAreas.length > 0 && (
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
+          <div className="border-t border-gray-800 pt-8">
+            <h3 className="font-bold text-white mb-4 uppercase tracking-wider text-xs">
+              Areas We Serve
+            </h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-1.5">
+              {config.serviceAreas.map((area) => (
+                <a
+                  key={area.slug}
+                  href={`/areas/${area.slug}`}
+                  className="text-gray-400 hover:text-red-400 text-sm transition-colors"
+                >
+                  {area.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Bottom bar */}
       <div className="border-t border-gray-800 py-4 px-4">

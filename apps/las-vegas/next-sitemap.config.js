@@ -14,8 +14,5 @@ module.exports = {
         disallow: ["/api/"],
       },
     ],
-    additionalSitemaps: [
-      "https://lasvegasnevadainjurylawyer.com/sitemap.xml",
-    ],
   },
 };

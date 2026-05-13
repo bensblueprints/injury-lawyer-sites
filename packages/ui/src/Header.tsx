@@ -6,18 +6,18 @@ import { Phone, Menu, X, ChevronDown } from "lucide-react";
 import type { SiteConfig } from "@injury/schema";
 
 const practiceAreas = [
-  { label: "Car Accidents", slug: "car-accidents" },
-  { label: "Truck Accidents", slug: "truck-accidents" },
-  { label: "Motorcycle Accidents", slug: "motorcycle-accidents" },
-  { label: "Slip & Fall", slug: "slip-and-fall" },
-  { label: "Medical Malpractice", slug: "medical-malpractice" },
-  { label: "Wrongful Death", slug: "wrongful-death" },
-  { label: "Workers' Comp", slug: "workers-compensation" },
-  { label: "Dog Bites", slug: "dog-bites" },
-  { label: "Product Liability", slug: "product-liability" },
-  { label: "Brain Injuries", slug: "traumatic-brain-injuries" },
-  { label: "Spinal Injuries", slug: "spinal-cord-injuries" },
-  { label: "Pedestrian Accidents", slug: "pedestrian-accidents" },
+  { label: "Car Accidents", slug: "car-accident-lawyer" },
+  { label: "Truck Accidents", slug: "truck-accident-lawyer" },
+  { label: "Motorcycle Accidents", slug: "motorcycle-accident-lawyer" },
+  { label: "Slip & Fall", slug: "slip-and-fall-lawyer" },
+  { label: "Medical Malpractice", slug: "medical-malpractice-lawyer" },
+  { label: "Wrongful Death", slug: "wrongful-death-lawyer" },
+  { label: "Workers' Comp", slug: "workers-compensation-lawyer" },
+  { label: "Dog Bites", slug: "dog-bite-lawyer" },
+  { label: "Product Liability", slug: "product-liability-lawyer" },
+  { label: "Brain Injuries", slug: "brain-injury-lawyer" },
+  { label: "Spinal Injuries", slug: "spinal-cord-injury-lawyer" },
+  { label: "Pedestrian Accidents", slug: "pedestrian-accident-lawyer" },
 ];
 
 export function Header({ config }: { config: SiteConfig }) {
@@ -104,7 +104,7 @@ export function Header({ config }: { config: SiteConfig }) {
               <a href="/areas" className="text-gray-700 hover:text-red-700 font-medium text-sm transition-colors">
                 Areas Served
               </a>
-              <a href="/faq/general" className="text-gray-700 hover:text-red-700 font-medium text-sm transition-colors">
+              <a href="/faq/general-personal-injury" className="text-gray-700 hover:text-red-700 font-medium text-sm transition-colors">
                 FAQ
               </a>
               <a href="/about/about-us" className="text-gray-700 hover:text-red-700 font-medium text-sm transition-colors">
@@ -167,7 +167,7 @@ export function Header({ config }: { config: SiteConfig }) {
                 ))}
                 <div className="border-t border-gray-100 pt-3 mt-3 space-y-1">
                   <a href="/areas" className="block px-3 py-2 text-sm text-gray-700 hover:bg-red-50 rounded-md">Areas Served</a>
-                  <a href="/faq/general" className="block px-3 py-2 text-sm text-gray-700 hover:bg-red-50 rounded-md">FAQ</a>
+                  <a href="/faq/general-personal-injury" className="block px-3 py-2 text-sm text-gray-700 hover:bg-red-50 rounded-md">FAQ</a>
                   <a href="/about/about-us" className="block px-3 py-2 text-sm text-gray-700 hover:bg-red-50 rounded-md">About</a>
                 </div>
                 <div className="border-t border-gray-100 pt-3 mt-3 flex flex-col gap-2">

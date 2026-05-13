@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const { name, phone, email, caseType, message, domain } = body;
 
-    if (!name || !phone || !email || !domain) {
+    if (!name || !phone || !domain) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
@@ -63,7 +63,7 @@ export async function POST(req: NextRequest) {
         siteId: site?.id ?? null,
         name,
         phone,
-        email,
+        email: email ?? "",
         caseType: caseType ?? "General Inquiry",
         message: message ?? null,
         leadType: "HOT_TRANSFER",

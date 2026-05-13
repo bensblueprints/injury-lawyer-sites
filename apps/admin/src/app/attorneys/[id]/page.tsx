@@ -3,6 +3,7 @@ import { AdminLayout } from "@/components/AdminLayout";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SetPortalPassword } from "./SetPortalPassword";
+import { AddCreditsForm } from "./AddCreditsForm";
 import { LEAD_PRICING } from "@/lib/leadPricing";
 
 export const dynamic = "force-dynamic";
@@ -12,46 +13,59 @@ export default async function AttorneyDetailPage({
 }: {
   params: { id: string };
 }) {
-  const attorney = await prisma.attorney.findUnique({
-    where: { id: params.id },
-    include: {
-      sites: {
-        include: { _count: { select: { leads: true } } },
+  const [attorney, leadsReceived] = await Promise.all([
+    prisma.attorney.findUnique({
+      where: { id: params.id },
+      include: {
+        sites: {
+          include: { _count: { select: { leads: true } } },
+          orderBy: { createdAt: "asc" },
+        },
+        invoices: {
+          orderBy: { createdAt: "desc" },
+          include: { leads: true },
+        },
+        creditPurchases: {
+          orderBy: { createdAt: "desc" },
+        },
       },
-      invoices: {
-        orderBy: { createdAt: "desc" },
-        include: { leads: true },
-      },
-      creditPurchases: {
-        orderBy: { createdAt: "desc" },
-      },
-    },
-  });
+    }),
+    prisma.lead.groupBy({
+      by: ["leadType"],
+      where: { site: { attorneyId: params.id }, leadType: { not: null } },
+      _count: { leadType: true },
+    }),
+  ]);
 
   if (!attorney) notFound();
 
-  const totalBilled = attorney.invoices.reduce(
-    (sum, inv) => sum + inv.amount,
-    0
-  );
-  const balanceDue = attorney.invoices
-    .filter((inv) => inv.status === "UNPAID")
-    .reduce((sum, inv) => sum + inv.amount, 0);
-  const totalLeads = attorney.sites.reduce(
-    (sum, s) => sum + s._count.leads,
-    0
-  );
+  const totalBilled = attorney.invoices.reduce((sum, inv) => sum + inv.amount, 0);
+  const balanceDue = attorney.invoices.filter((inv) => inv.status === "UNPAID").reduce((sum, inv) => sum + inv.amount, 0);
+  const totalLeads = attorney.sites.reduce((sum, s) => sum + s._count.leads, 0);
 
-  // Credit balance per type
+  const receivedByType: Record<string, number> = {};
+  for (const r of leadsReceived) {
+    if (r.leadType) receivedByType[r.leadType] = r._count.leadType;
+  }
+
+  // Credit balance per type with received count
   const creditLeadTypes = ["FORM_FILL", "AI_CALL", "HOT_TRANSFER"] as const;
   const creditStats = creditLeadTypes.map((lt) => {
-    const paidPurchases = attorney.creditPurchases.filter(
-      (p) => p.leadType === lt && p.status === "PAID"
-    );
+    const paidPurchases = attorney.creditPurchases.filter((p) => p.leadType === lt && p.status === "PAID");
     const purchased = paidPurchases.reduce((sum, p) => sum + p.quantity, 0);
     const totalSpent = paidPurchases.reduce((sum, p) => sum + p.totalCharged, 0);
-    return { leadType: lt, purchased, totalSpent };
+    const received = receivedByType[lt] ?? 0;
+    const available = Math.max(0, purchased - received);
+    return { leadType: lt, purchased, received, available, totalSpent };
   });
+
+  // Site pricing for the AddCreditsForm default prices (use first assigned site)
+  const firstSite = attorney.sites[0] ?? null;
+  const sitePricing = firstSite ? {
+    formFillPrice: firstSite.formFillPrice,
+    aiCallPrice: firstSite.aiCallPrice,
+    hotTransferPrice: firstSite.hotTransferPrice,
+  } : null;
 
   return (
     <AdminLayout>
@@ -194,17 +208,24 @@ export default async function AttorneyDetailPage({
         {/* Credit Purchases */}
         <div className="mb-6">
           <div className="bg-slate-800 rounded-xl border border-slate-700 p-5">
-            <h2 className="text-white font-bold mb-4">Lead Credits</h2>
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-white font-bold">Lead Credits</h2>
+              <AddCreditsForm attorneyId={attorney.id} sitePricing={sitePricing} />
+            </div>
             <div className="grid grid-cols-3 gap-4 mb-5">
-              {creditStats.map(({ leadType, purchased, totalSpent }) => (
-                <div key={leadType} className="bg-slate-700/50 rounded-lg p-4">
-                  <p className="text-slate-400 text-xs font-medium uppercase tracking-wide mb-1">
+              {creditStats.map(({ leadType, purchased, received, available, totalSpent }) => (
+                <div key={leadType} className={`rounded-lg p-4 border ${available > 0 ? "bg-slate-700/50 border-slate-600" : "bg-slate-800 border-slate-700"}`}>
+                  <p className="text-slate-400 text-xs font-medium uppercase tracking-wide mb-2">
                     {LEAD_PRICING[leadType].label}
                   </p>
-                  <p className="text-white text-2xl font-black">{purchased}</p>
-                  <p className="text-slate-500 text-xs mt-1">
-                    ${totalSpent.toFixed(2)} spent
-                  </p>
+                  <div className="flex items-end gap-1 mb-2">
+                    <p className={`text-2xl font-black ${available > 0 ? "text-green-400" : "text-slate-500"}`}>{available}</p>
+                    <p className="text-slate-500 text-xs mb-1">available</p>
+                  </div>
+                  <div className="space-y-0.5 text-xs text-slate-500">
+                    <div>{purchased} purchased · {received} delivered</div>
+                    <div>${totalSpent.toFixed(0)} prepaid</div>
+                  </div>
                 </div>
               ))}
             </div>

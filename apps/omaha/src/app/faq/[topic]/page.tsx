@@ -18,6 +18,8 @@ const FAQ_TOPICS = [
   { slug: "motorcycle-accident-faq", title: "Motorcycle Accident FAQ" },
   { slug: "insurance-claims-faq", title: "Insurance Claims FAQ" },
   { slug: "statute-of-limitations-faq", title: "Statute of Limitations FAQ" },
+  { slug: "car-accidents", title: "Car Accidents FAQ" },
+  { slug: "settlement-process", title: "Settlement Process FAQ" },
 ];
 
 export async function generateStaticParams() {

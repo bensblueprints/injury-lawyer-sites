@@ -16,6 +16,13 @@ const LEGAL_PROCESS_TOPICS = [
   { slug: "after-your-settlement", title: "After Your Settlement" },
   { slug: "insurance-company-tactics", title: "Insurance Company Tactics" },
   { slug: "medical-liens-and-bills", title: "Medical Liens and Bills" },
+  { slug: "how-to-file-a-claim", title: "How to File a Personal Injury Claim" },
+  { slug: "lawsuit-timeline", title: "Personal Injury Lawsuit Timeline" },
+  { slug: "statute-of-limitations", title: "Statute of Limitations" },
+  { slug: "what-is-negligence", title: "What Is Negligence?" },
+  { slug: "calculating-damages", title: "Calculating Your Damages" },
+  { slug: "insurance-negotiation", title: "Insurance Negotiation Tips" },
+  { slug: "when-to-hire", title: "When to Hire a Personal Injury Lawyer" },
 ];
 
 export async function generateStaticParams() {

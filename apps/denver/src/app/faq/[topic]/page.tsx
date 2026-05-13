@@ -20,12 +20,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: content.metaTitle,
     description: content.metaDescription,
     alternates: {
-      canonical: `https://devnercoloradoinjurylawyer.com/faq/${content.slug}`,
+      canonical: `https://denvercoloradoinjurylawyer.com/faq/${content.slug}`,
     },
     openGraph: {
       title: content.metaTitle,
       description: content.metaDescription,
-      url: `https://devnercoloradoinjurylawyer.com/faq/${content.slug}`,
+      url: `https://denvercoloradoinjurylawyer.com/faq/${content.slug}`,
     },
   };
 }
@@ -60,19 +60,19 @@ export default function FAQTopicPage({ params }: Props) {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://devnercoloradoinjurylawyer.com",
+        item: "https://denvercoloradoinjurylawyer.com",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "FAQ",
-        item: "https://devnercoloradoinjurylawyer.com/faq",
+        item: "https://denvercoloradoinjurylawyer.com/faq",
       },
       {
         "@type": "ListItem",
         position: 3,
         name: content.title,
-        item: `https://devnercoloradoinjurylawyer.com/faq/${content.slug}`,
+        item: `https://denvercoloradoinjurylawyer.com/faq/${content.slug}`,
       },
     ],
   };

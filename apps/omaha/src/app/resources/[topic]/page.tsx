@@ -16,6 +16,12 @@ const RESOURCE_TOPICS = [
   { slug: "nebraska-traffic-laws", title: "Nebraska Traffic Laws and Your Rights" },
   { slug: "workplace-safety-rights", title: "Workplace Safety Rights in Nebraska" },
   { slug: "finding-a-doctor-after-injury", title: "Finding a Doctor After an Injury" },
+  { slug: "local-resources", title: "Local Resources" },
+  { slug: "accident-reports", title: "Accident Reports" },
+  { slug: "hospitals", title: "Local Hospitals & Medical Centers" },
+  { slug: "accident-statistics", title: "Accident Statistics" },
+  { slug: "court-system", title: "Local Court System" },
+  { slug: "insurance-companies", title: "Insurance Companies" },
 ];
 
 export async function generateStaticParams() {

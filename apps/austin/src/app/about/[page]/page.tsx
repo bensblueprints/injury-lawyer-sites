@@ -14,6 +14,9 @@ const ABOUT_PAGES = [
   { slug: "client-reviews", title: "Client Reviews & Testimonials" },
   { slug: "community", title: "Our Austin Community Commitment" },
   { slug: "no-fee-guarantee", title: "Our No-Fee-Unless-We-Win Guarantee" },
+  { slug: "about-us", title: "About Austin Injury Law Group" },
+  { slug: "why-choose-us", title: "Why Choose Austin Injury Law Group" },
+  { slug: "case-results", title: "Our Case Results" },
 ];
 
 export async function generateStaticParams() {

@@ -14,7 +14,7 @@ FROM base AS builder
 WORKDIR /monorepo
 COPY --from=deps /monorepo/node_modules ./node_modules
 COPY . .
-RUN npx turbo build --filter=denver
+RUN npx turbo build --filter=denver-injury-lawyer
 
 # ── runner ────────────────────────────────────────────────────────────────────
 FROM base AS runner

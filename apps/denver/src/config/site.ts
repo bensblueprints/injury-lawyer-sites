@@ -24,7 +24,7 @@ export const siteConfig: SiteConfig = {
   description:
     "Aggressive personal injury attorneys serving Denver, Aurora, Lakewood, Arvada, and all of Metro Denver. No fee unless we win.",
   tagline: "Denver's Most Aggressive Injury Lawyers",
-  elevenLabsAgentId: "", // will be filled in after creating the agent
+  elevenLabsAgentId: "agent_6201krgbd3fzevevm3084jfgbf8x",
   serviceAreas: [
     { label: "Aurora", slug: "aurora" },
     { label: "Lakewood", slug: "lakewood" },

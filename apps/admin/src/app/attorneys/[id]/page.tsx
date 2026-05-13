@@ -3,6 +3,7 @@ import { AdminLayout } from "@/components/AdminLayout";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SetPortalPassword } from "./SetPortalPassword";
+import { LEAD_PRICING } from "@/lib/leadPricing";
 
 export const dynamic = "force-dynamic";
 
@@ -21,6 +22,9 @@ export default async function AttorneyDetailPage({
         orderBy: { createdAt: "desc" },
         include: { leads: true },
       },
+      creditPurchases: {
+        orderBy: { createdAt: "desc" },
+      },
     },
   });
 
@@ -37,6 +41,17 @@ export default async function AttorneyDetailPage({
     (sum, s) => sum + s._count.leads,
     0
   );
+
+  // Credit balance per type
+  const creditLeadTypes = ["FORM_FILL", "AI_CALL", "HOT_TRANSFER"] as const;
+  const creditStats = creditLeadTypes.map((lt) => {
+    const paidPurchases = attorney.creditPurchases.filter(
+      (p) => p.leadType === lt && p.status === "PAID"
+    );
+    const purchased = paidPurchases.reduce((sum, p) => sum + p.quantity, 0);
+    const totalSpent = paidPurchases.reduce((sum, p) => sum + p.totalCharged, 0);
+    return { leadType: lt, purchased, totalSpent };
+  });
 
   return (
     <AdminLayout>
@@ -176,6 +191,74 @@ export default async function AttorneyDetailPage({
         {/* Portal Password */}
         <div className="mb-6">
           <SetPortalPassword attorneyId={attorney.id} hasPassword={!!attorney.portalPassword} />
+        </div>
+
+        {/* Credit Purchases */}
+        <div className="mb-6">
+          <div className="bg-slate-800 rounded-xl border border-slate-700 p-5">
+            <h2 className="text-white font-bold mb-4">Lead Credits</h2>
+            <div className="grid grid-cols-3 gap-4 mb-5">
+              {creditStats.map(({ leadType, purchased, totalSpent }) => (
+                <div key={leadType} className="bg-slate-700/50 rounded-lg p-4">
+                  <p className="text-slate-400 text-xs font-medium uppercase tracking-wide mb-1">
+                    {LEAD_PRICING[leadType].label}
+                  </p>
+                  <p className="text-white text-2xl font-black">{purchased}</p>
+                  <p className="text-slate-500 text-xs mt-1">
+                    ${totalSpent.toFixed(2)} spent
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            {/* Purchase History Table */}
+            {attorney.creditPurchases.length > 0 ? (
+              <div className="overflow-hidden rounded-lg border border-slate-700">
+                <table className="w-full">
+                  <thead>
+                    <tr className="border-b border-slate-700 bg-slate-700/30">
+                      <th className="text-left text-slate-400 text-xs font-medium px-4 py-3">Date</th>
+                      <th className="text-left text-slate-400 text-xs font-medium px-4 py-3">Lead Type</th>
+                      <th className="text-left text-slate-400 text-xs font-medium px-4 py-3">Qty</th>
+                      <th className="text-right text-slate-400 text-xs font-medium px-4 py-3">Total</th>
+                      <th className="text-left text-slate-400 text-xs font-medium px-4 py-3">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {attorney.creditPurchases.map((p) => (
+                      <tr key={p.id} className="border-b border-slate-700/50 hover:bg-slate-700/20 transition-colors">
+                        <td className="px-4 py-3 text-slate-400 text-xs">
+                          {new Date(p.createdAt).toLocaleDateString()}
+                        </td>
+                        <td className="px-4 py-3 text-white text-sm">
+                          {LEAD_PRICING[p.leadType as keyof typeof LEAD_PRICING]?.label ?? p.leadType}
+                        </td>
+                        <td className="px-4 py-3 text-slate-300 text-sm">{p.quantity}</td>
+                        <td className="px-4 py-3 text-white text-sm font-bold text-right">
+                          ${p.totalCharged.toFixed(2)}
+                        </td>
+                        <td className="px-4 py-3">
+                          <span
+                            className={`text-xs font-bold px-2 py-0.5 rounded-full ${
+                              p.status === "PAID"
+                                ? "bg-green-900 text-green-300"
+                                : p.status === "FAILED"
+                                ? "bg-red-900 text-red-300"
+                                : "bg-yellow-900 text-yellow-300"
+                            }`}
+                          >
+                            {p.status}
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ) : (
+              <p className="text-slate-500 text-sm">No credit purchases yet.</p>
+            )}
+          </div>
         </div>
 
         {/* Invoice History */}

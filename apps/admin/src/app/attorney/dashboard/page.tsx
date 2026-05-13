@@ -3,6 +3,7 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import { LEAD_PRICING } from "@/lib/leadPricing";
 
 export const dynamic = "force-dynamic";
 
@@ -30,12 +31,16 @@ export default async function AttorneyDashboardPage() {
 
   const attorneyId = session.user.userId;
 
-  const [attorney, leads] = await Promise.all([
+  const [attorney, leads, creditPurchases] = await Promise.all([
     prisma.attorney.findUnique({ where: { id: attorneyId } }),
     prisma.lead.findMany({
       where: { site: { attorneyId } },
       orderBy: { createdAt: "desc" },
       include: { site: true },
+    }),
+    prisma.leadCreditPurchase.findMany({
+      where: { attorneyId, status: "PAID" },
+      select: { leadType: true, quantity: true },
     }),
   ]);
 
@@ -46,6 +51,16 @@ export default async function AttorneyDashboardPage() {
   const newCount = leads.filter((l) => l.status === "NEW").length;
   const soldCount = leads.filter((l) => l.status === "SOLD").length;
   const withCall = leads.filter((l) => l.conversationId).length;
+
+  // Credit balance per type
+  const leadTypes = ["FORM_FILL", "AI_CALL", "HOT_TRANSFER"] as const;
+  const creditBalance = leadTypes.map((lt) => {
+    const purchased = creditPurchases
+      .filter((p) => p.leadType === lt)
+      .reduce((sum, p) => sum + p.quantity, 0);
+    const received = leads.filter((l) => (l as any).leadType === lt).length;
+    return { leadType: lt, purchased, received, available: Math.max(0, purchased - received) };
+  });
 
   return (
     <div className="min-h-screen bg-slate-900">
@@ -96,6 +111,60 @@ export default async function AttorneyDashboardPage() {
             </p>
             <p className="text-green-400 text-3xl font-black">{withCall}</p>
           </div>
+        </div>
+
+        {/* Credit Balance */}
+        <div className="bg-slate-800 rounded-xl border border-slate-700 p-5 mb-8">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-white font-bold">Credit Balance</h2>
+            <Link
+              href="/attorney/credits"
+              className="bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors"
+            >
+              Purchase More Credits
+            </Link>
+          </div>
+          <div className="grid grid-cols-3 gap-4">
+            {creditBalance.map(({ leadType, purchased, received, available }) => (
+              <div key={leadType} className="bg-slate-700/50 rounded-lg p-4">
+                <p className="text-slate-400 text-xs font-medium uppercase tracking-wide mb-1">
+                  {LEAD_PRICING[leadType].label}
+                </p>
+                <p className="text-white text-2xl font-black mb-2">
+                  {available}
+                  <span className="text-slate-500 text-sm font-normal ml-1">available</span>
+                </p>
+                <div className="text-xs text-slate-500 space-y-0.5">
+                  <div className="flex justify-between">
+                    <span>Purchased</span>
+                    <span className="text-slate-400">{purchased}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Received</span>
+                    <span className="text-slate-400">{received}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          {/* Lead Preferences */}
+          {attorney.acceptedLeadTypes && attorney.acceptedLeadTypes.length > 0 && (
+            <div className="mt-4 pt-4 border-t border-slate-700">
+              <p className="text-slate-400 text-xs font-medium uppercase tracking-wide mb-2">
+                Lead Preferences
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {(attorney.acceptedLeadTypes as string[]).map((lt) => (
+                  <span
+                    key={lt}
+                    className="bg-slate-700 text-slate-300 text-xs font-medium px-3 py-1 rounded-full"
+                  >
+                    {LEAD_PRICING[lt as keyof typeof LEAD_PRICING]?.label ?? lt}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Leads table */}

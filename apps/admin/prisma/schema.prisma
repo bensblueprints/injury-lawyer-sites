@@ -8,16 +8,18 @@ datasource db {
 }
 
 model Attorney {
-  id             String    @id @default(cuid())
-  name           String
-  firmName       String
-  email          String    @unique
-  phone          String
-  notes          String?
-  portalPassword String?   // bcrypt hash — set by admin so attorney can log into /attorney portal
-  createdAt      DateTime  @default(now())
-  sites          Site[]
-  invoices       Invoice[]
+  id                   String               @id @default(cuid())
+  name                 String
+  firmName             String
+  email                String               @unique
+  phone                String
+  notes                String?
+  portalPassword       String?              // bcrypt hash — set by admin so attorney can log into /attorney portal
+  createdAt            DateTime             @default(now())
+  acceptedLeadTypes    LeadType[]
+  sites                Site[]
+  invoices             Invoice[]
+  creditPurchases      LeadCreditPurchase[]
 }
 
 model Site {
@@ -47,6 +49,7 @@ model Lead {
   invoiceId      String?
   invoice        Invoice?   @relation(fields: [invoiceId], references: [id])
   conversationId String?    // ElevenLabs conversation ID for transcript lookup
+  leadType       LeadType?
   createdAt      DateTime   @default(now())
 }
 
@@ -72,4 +75,25 @@ model Invoice {
 enum InvoiceStatus {
   UNPAID
   PAID
+}
+
+enum LeadType {
+  FORM_FILL
+  AI_CALL
+  HOT_TRANSFER
+}
+
+model LeadCreditPurchase {
+  id              String   @id @default(cuid())
+  attorneyId      String
+  attorney        Attorney @relation(fields: [attorneyId], references: [id])
+  leadType        LeadType
+  quantity        Int
+  unitPrice       Float
+  subtotal        Float
+  processingFee   Float
+  totalCharged    Float
+  paymentIntentId String?
+  status          String   @default("PENDING")
+  createdAt       DateTime @default(now())
 }

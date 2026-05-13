@@ -24,12 +24,20 @@ export function Header({ config }: { config: SiteConfig }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [practiceOpen, setPracticeOpen] = useState(false);
+  const [areasOpen, setAreasOpen] = useState(false);
+  const [mobilePracticeOpen, setMobilePracticeOpen] = useState(false);
+  const [mobileAreasOpen, setMobileAreasOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const serviceAreas = config.serviceAreas ?? [];
+  const half = Math.ceil(serviceAreas.length / 2);
+  const col1 = serviceAreas.slice(0, half);
+  const col2 = serviceAreas.slice(half);
 
   return (
     <>
@@ -62,7 +70,8 @@ export function Header({ config }: { config: SiteConfig }) {
 
             {/* Desktop Nav */}
             <nav className="hidden lg:flex items-center gap-6">
-              <div className="relative group">
+              {/* Practice Areas dropdown */}
+              <div className="relative">
                 <button
                   className="flex items-center gap-1 text-gray-700 hover:text-red-700 font-medium text-sm transition-colors"
                   onMouseEnter={() => setPracticeOpen(true)}
@@ -76,7 +85,8 @@ export function Header({ config }: { config: SiteConfig }) {
                       initial={{ opacity: 0, y: 8 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 8 }}
-                      className="absolute top-full left-0 mt-1 w-56 bg-white shadow-xl rounded-lg border border-gray-100 p-2 grid grid-cols-1 gap-0.5 z-50"
+                      transition={{ duration: 0.15 }}
+                      className="absolute top-full left-0 mt-1 w-56 bg-white shadow-xl rounded-lg border border-gray-100 p-2 z-50"
                       onMouseEnter={() => setPracticeOpen(true)}
                       onMouseLeave={() => setPracticeOpen(false)}
                     >
@@ -84,7 +94,7 @@ export function Header({ config }: { config: SiteConfig }) {
                         <a
                           key={area.slug}
                           href={`/${area.slug}`}
-                          className="px-3 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-700 rounded-md transition-colors"
+                          className="block px-3 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-700 rounded-md transition-colors"
                         >
                           {area.label}
                         </a>
@@ -92,7 +102,7 @@ export function Header({ config }: { config: SiteConfig }) {
                       <div className="border-t border-gray-100 mt-1 pt-1">
                         <a
                           href="/practice-areas"
-                          className="px-3 py-2 text-sm text-red-700 font-semibold hover:bg-red-50 rounded-md block transition-colors"
+                          className="block px-3 py-2 text-sm text-red-700 font-semibold hover:bg-red-50 rounded-md transition-colors"
                         >
                           All Practice Areas →
                         </a>
@@ -101,9 +111,63 @@ export function Header({ config }: { config: SiteConfig }) {
                   )}
                 </AnimatePresence>
               </div>
-              <a href="/areas" className="text-gray-700 hover:text-red-700 font-medium text-sm transition-colors">
-                Areas Served
-              </a>
+
+              {/* Service Areas dropdown */}
+              {serviceAreas.length > 0 && (
+                <div className="relative">
+                  <button
+                    className="flex items-center gap-1 text-gray-700 hover:text-red-700 font-medium text-sm transition-colors"
+                    onMouseEnter={() => setAreasOpen(true)}
+                    onMouseLeave={() => setAreasOpen(false)}
+                  >
+                    Areas Served <ChevronDown className="w-4 h-4" />
+                  </button>
+                  <AnimatePresence>
+                    {areasOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 8 }}
+                        transition={{ duration: 0.15 }}
+                        className="absolute top-full left-0 mt-1 bg-white shadow-xl rounded-lg border border-gray-100 p-2 z-50"
+                        style={{ minWidth: serviceAreas.length > 8 ? "320px" : "200px" }}
+                        onMouseEnter={() => setAreasOpen(true)}
+                        onMouseLeave={() => setAreasOpen(false)}
+                      >
+                        <div className={serviceAreas.length > 8 ? "grid grid-cols-2 gap-0.5" : "grid grid-cols-1 gap-0.5"}>
+                          {col1.map((area) => (
+                            <a
+                              key={area.slug}
+                              href={`/areas/${area.slug}`}
+                              className="block px-3 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-700 rounded-md transition-colors"
+                            >
+                              {area.label}
+                            </a>
+                          ))}
+                          {col2.map((area) => (
+                            <a
+                              key={area.slug}
+                              href={`/areas/${area.slug}`}
+                              className="block px-3 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-700 rounded-md transition-colors"
+                            >
+                              {area.label}
+                            </a>
+                          ))}
+                        </div>
+                        <div className="border-t border-gray-100 mt-1 pt-1">
+                          <a
+                            href="/areas"
+                            className="block px-3 py-2 text-sm text-red-700 font-semibold hover:bg-red-50 rounded-md transition-colors"
+                          >
+                            All Service Areas →
+                          </a>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              )}
+
               <a href="/faq/general-personal-injury" className="text-gray-700 hover:text-red-700 font-medium text-sm transition-colors">
                 FAQ
               </a>
@@ -153,22 +217,92 @@ export function Header({ config }: { config: SiteConfig }) {
               className="lg:hidden bg-white border-t border-gray-100 shadow-lg overflow-hidden"
             >
               <div className="px-4 py-4 space-y-1">
-                <p className="text-xs font-bold text-gray-400 uppercase tracking-wider px-3 mb-2">
+                {/* Practice Areas accordion */}
+                <button
+                  onClick={() => setMobilePracticeOpen(!mobilePracticeOpen)}
+                  className="w-full flex items-center justify-between px-3 py-2.5 text-sm font-bold text-gray-800 hover:bg-red-50 rounded-md"
+                >
                   Practice Areas
-                </p>
-                {practiceAreas.map((area) => (
-                  <a
-                    key={area.slug}
-                    href={`/${area.slug}`}
-                    className="block px-3 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-700 rounded-md"
-                  >
-                    {area.label}
-                  </a>
-                ))}
-                <div className="border-t border-gray-100 pt-3 mt-3 space-y-1">
-                  <a href="/areas" className="block px-3 py-2 text-sm text-gray-700 hover:bg-red-50 rounded-md">Areas Served</a>
+                  <ChevronDown
+                    className={`w-4 h-4 transition-transform ${mobilePracticeOpen ? "rotate-180" : ""}`}
+                  />
+                </button>
+                <AnimatePresence>
+                  {mobilePracticeOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="pl-4 pb-1 grid grid-cols-2 gap-0.5">
+                        {practiceAreas.map((area) => (
+                          <a
+                            key={area.slug}
+                            href={`/${area.slug}`}
+                            className="block px-3 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-700 rounded-md"
+                          >
+                            {area.label}
+                          </a>
+                        ))}
+                      </div>
+                      <a
+                        href="/practice-areas"
+                        className="block ml-4 px-3 py-2 text-sm text-red-700 font-semibold hover:bg-red-50 rounded-md"
+                      >
+                        All Practice Areas →
+                      </a>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                {/* Service Areas accordion */}
+                {serviceAreas.length > 0 && (
+                  <>
+                    <button
+                      onClick={() => setMobileAreasOpen(!mobileAreasOpen)}
+                      className="w-full flex items-center justify-between px-3 py-2.5 text-sm font-bold text-gray-800 hover:bg-red-50 rounded-md"
+                    >
+                      Areas Served
+                      <ChevronDown
+                        className={`w-4 h-4 transition-transform ${mobileAreasOpen ? "rotate-180" : ""}`}
+                      />
+                    </button>
+                    <AnimatePresence>
+                      {mobileAreasOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="pl-4 pb-1 grid grid-cols-2 gap-0.5">
+                            {serviceAreas.map((area) => (
+                              <a
+                                key={area.slug}
+                                href={`/areas/${area.slug}`}
+                                className="block px-3 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-700 rounded-md"
+                              >
+                                {area.label}
+                              </a>
+                            ))}
+                          </div>
+                          <a
+                            href="/areas"
+                            className="block ml-4 px-3 py-2 text-sm text-red-700 font-semibold hover:bg-red-50 rounded-md"
+                          >
+                            All Service Areas →
+                          </a>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </>
+                )}
+
+                <div className="border-t border-gray-100 pt-3 mt-2 space-y-1">
                   <a href="/faq/general-personal-injury" className="block px-3 py-2 text-sm text-gray-700 hover:bg-red-50 rounded-md">FAQ</a>
                   <a href="/about/about-us" className="block px-3 py-2 text-sm text-gray-700 hover:bg-red-50 rounded-md">About</a>
+                  <a href="/resources/local-resources" className="block px-3 py-2 text-sm text-gray-700 hover:bg-red-50 rounded-md">Resources</a>
                 </div>
                 <div className="border-t border-gray-100 pt-3 mt-3 flex flex-col gap-2">
                   <a

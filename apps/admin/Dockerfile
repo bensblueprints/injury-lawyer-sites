@@ -21,6 +21,9 @@ ENV NODE_ENV=production
 ENV PORT=3000
 ENV HOSTNAME=0.0.0.0
 
+# OpenSSL 3 required by linux-musl-openssl-3.0.x Prisma engine
+RUN apk add --no-cache openssl
+
 RUN addgroup --system --gid 1001 nodejs && \
     adduser --system --uid 1001 nextjs
 

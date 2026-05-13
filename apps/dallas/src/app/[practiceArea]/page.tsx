@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import {
   HeroSection,
   CTABox,
@@ -74,6 +75,16 @@ export default function PracticeAreaPage({ params }: Props) {
             <p className="lead text-xl text-gray-700 mb-8 not-prose">
               {content.intro}
             </p>
+
+            <div className="not-prose my-8 rounded-xl overflow-hidden shadow-md">
+              <Image
+                src={`/images/${params.practiceArea}.webp`}
+                alt={`${content.title} attorney in Dallas`}
+                width={1536}
+                height={1024}
+                className="w-full h-64 sm:h-80 object-cover"
+              />
+            </div>
 
             {content.sections.map((section) => (
               <div key={section.heading} className="mb-8">

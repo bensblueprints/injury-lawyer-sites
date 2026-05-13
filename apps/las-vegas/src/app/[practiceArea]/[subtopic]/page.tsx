@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import { Breadcrumbs, CTABox, Sidebar, RelatedPages, PageHeroSection } from "@injury/ui";
 import { siteConfig } from "@/config/site";
 import {
@@ -123,6 +124,18 @@ export default function SubtopicPage({ params }: Props) {
                     <p className="text-gray-700 leading-relaxed">{section.body}</p>
                   </div>
                 </section>
+
+                {i === 0 && (
+                  <div className="my-8 rounded-xl overflow-hidden shadow-md">
+                    <Image
+                      src={`/images/${params.practiceArea}.webp`}
+                      alt={`${content.title} attorney in Las Vegas`}
+                      width={1536}
+                      height={1024}
+                      className="w-full h-64 sm:h-72 object-cover"
+                    />
+                  </div>
+                )}
 
                 {(i + 1) % 2 === 0 && i < content.sections.length - 1 && (
                   <CTABox config={siteConfig} />

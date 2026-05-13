@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import {
   HeroSection,
   CTABox,
@@ -146,6 +147,16 @@ export default function SubtopicPage({ params }: Props) {
                 meaning you can recover damages even if you were partially at fault, as long
                 as your fault does not exceed 51%.
               </p>
+            </div>
+
+            <div className="not-prose my-8 rounded-xl overflow-hidden shadow-md">
+              <Image
+                src={`/images/${params.practiceArea}.webp`}
+                alt={`${subtopicTitle} attorney in Dallas`}
+                width={1536}
+                height={1024}
+                className="w-full h-64 sm:h-72 object-cover"
+              />
             </div>
 
             <div className="mb-8">

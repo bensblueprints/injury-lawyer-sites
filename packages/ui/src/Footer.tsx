@@ -2,6 +2,14 @@ import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import type { SiteConfig } from "@injury/schema";
 import { LeadForm } from "./LeadForm";
 
+const PARTNER_SITES = [
+  { city: "Las Vegas, NV", domain: "lasvegasnevadainjurylawyer.com" },
+  { city: "Dallas, TX", domain: "dallastexasinjurylawyer.com" },
+  { city: "Austin, TX", domain: "austintexasinjurylawyer.com" },
+  { city: "Omaha, NE", domain: "omahanebraskainjurylawyer.com" },
+  { city: "Denver, CO", domain: "denvercoloradoinjurylawyer.com" },
+];
+
 const practiceAreaLinks = [
   { label: "Car Accidents", slug: "car-accident-lawyer" },
   { label: "Truck Accidents", slug: "truck-accident-lawyer" },
@@ -176,6 +184,46 @@ export function Footer({ config }: { config: SiteConfig }) {
           </div>
         </div>
       )}
+
+      {/* Partner Sites + Get Legal Leads */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
+        <div className="border-t border-gray-800 pt-8">
+          <div className="flex flex-col sm:flex-row justify-between items-start gap-6">
+            <div>
+              <h3 className="font-bold text-white mb-3 uppercase tracking-wider text-xs">
+                Injury Lawyers in Other Cities
+              </h3>
+              <div className="flex flex-wrap gap-x-5 gap-y-2">
+                {PARTNER_SITES.filter((s) => s.domain !== config.domain).map((site) => (
+                  <a
+                    key={site.domain}
+                    href={`https://${site.domain}`}
+                    className="text-gray-400 hover:text-red-400 text-sm transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {site.city}
+                  </a>
+                ))}
+              </div>
+            </div>
+            <div className="sm:text-right flex-shrink-0">
+              <h3 className="font-bold text-white mb-1 uppercase tracking-wider text-xs">
+                Get Legal Leads
+              </h3>
+              <p className="text-gray-500 text-xs mb-2">Attorney lead generation network</p>
+              <a
+                href="https://getlegalleads.xyz"
+                className="text-red-400 hover:text-red-300 text-sm font-semibold transition-colors"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GetLegalLeads.xyz →
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* Bottom bar */}
       <div className="border-t border-gray-800 py-4 px-4">

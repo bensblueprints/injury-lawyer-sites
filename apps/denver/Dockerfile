@@ -3,7 +3,7 @@ FROM node:20-alpine AS base
 # ── deps ──────────────────────────────────────────────────────────────────────
 FROM base AS deps
 WORKDIR /monorepo
-COPY package.json package-lock.json turbo.json ./
+COPY package.json turbo.json ./
 COPY apps/denver/package.json ./apps/denver/
 COPY packages/ui/package.json ./packages/ui/
 COPY packages/schema/package.json ./packages/schema/

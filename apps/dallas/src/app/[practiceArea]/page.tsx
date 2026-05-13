@@ -7,6 +7,7 @@ import {
   Breadcrumbs,
   Sidebar,
   RelatedPages,
+  PRACTICE_AREA_IMAGE_MAP,
 } from "@injury/ui";
 import { siteConfig } from "@/config/site";
 import {
@@ -61,6 +62,7 @@ export default function PracticeAreaPage({ params }: Props) {
         headline={content.heroHeadline}
         subheadline={content.heroSubheadline}
         compact
+        imageSrc={PRACTICE_AREA_IMAGE_MAP[params.practiceArea] ?? "/images/hero.webp"}
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

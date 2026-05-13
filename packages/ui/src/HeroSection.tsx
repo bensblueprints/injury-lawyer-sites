@@ -2,10 +2,10 @@
 
 import { motion } from "framer-motion";
 import { Shield, Star, Award, Phone, ChevronDown } from "lucide-react";
+import Image from "next/image";
 import type { SiteConfig } from "@injury/schema";
 import { LeadForm } from "./LeadForm";
-import { FindLawyerModal } from "./FindLawyerModal";
-import { useState } from "react";
+import { openElevenLabsWidget } from "./AIReceptionist";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -21,11 +21,11 @@ interface HeroSectionProps {
   headline?: string;
   subheadline?: string;
   compact?: boolean;
+  /** Override the default hero.webp with a practice-area-specific image */
+  imageSrc?: string;
 }
 
-export function HeroSection({ config, headline, subheadline, compact = false }: HeroSectionProps) {
-  const [modalOpen, setModalOpen] = useState(false);
-
+export function HeroSection({ config, headline, subheadline, compact = false, imageSrc = "/images/hero.webp" }: HeroSectionProps) {
   const h = headline ?? `${config.city}'s #1 Personal Injury Lawyers`;
   const sub =
     subheadline ??
@@ -33,7 +33,21 @@ export function HeroSection({ config, headline, subheadline, compact = false }: 
 
   return (
     <>
-      <section className={`relative flex items-center overflow-hidden bg-gradient-to-br from-gray-950 via-gray-900 to-red-950 ${compact ? "min-h-[50vh] py-12" : "min-h-[90vh]"}`}>
+      <section className={`relative flex items-center overflow-hidden bg-gray-950 ${compact ? "min-h-[50vh] py-12" : "min-h-[90vh]"}`}>
+        {/* Hero background image */}
+        <div className="absolute inset-0">
+          <Image
+            src={imageSrc}
+            alt={`${config.city} personal injury lawyer`}
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
+          />
+          {/* Dark overlay for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-950/85 via-gray-900/75 to-red-950/70" />
+        </div>
+
         {/* Animated background elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <motion.div
@@ -45,15 +59,6 @@ export function HeroSection({ config, headline, subheadline, compact = false }: 
             animate={{ scale: [1, 1.08, 1], opacity: [0.03, 0.06, 0.03] }}
             transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
             className="absolute -bottom-40 -left-20 w-[700px] h-[700px] rounded-full bg-red-700"
-          />
-          {/* Grid lines */}
-          <div
-            className="absolute inset-0 opacity-[0.03]"
-            style={{
-              backgroundImage:
-                "linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)",
-              backgroundSize: "60px 60px",
-            }}
           />
         </div>
 
@@ -136,10 +141,10 @@ export function HeroSection({ config, headline, subheadline, compact = false }: 
                 <motion.button
                   whileHover={{ scale: 1.04 }}
                   whileTap={{ scale: 0.97 }}
-                  onClick={() => setModalOpen(true)}
+                  onClick={openElevenLabsWidget}
                   className="bg-red-700 hover:bg-red-600 text-white font-black px-8 py-4 rounded-xl text-lg shadow-xl shadow-red-900/40 transition-colors"
                 >
-                  Find a Lawyer Now →
+                  Talk to a Lawyer Now →
                 </motion.button>
                 <motion.a
                   href={`tel:${config.phone}`}
@@ -182,7 +187,6 @@ export function HeroSection({ config, headline, subheadline, compact = false }: 
         </motion.div>
       </section>
 
-      <FindLawyerModal config={config} open={modalOpen} onClose={() => setModalOpen(false)} />
     </>
   );
 }

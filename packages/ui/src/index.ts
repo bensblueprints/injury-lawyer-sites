@@ -15,4 +15,5 @@ export { TableOfContents } from "./TableOfContents";
 export { FAQAccordion } from "./FAQAccordion";
 export { TrustBar } from "./TrustBar";
 export { ProcessSteps } from "./ProcessSteps";
-export { AIReceptionist } from "./AIReceptionist";
+export { AIReceptionist, openElevenLabsWidget } from "./AIReceptionist";
+export { PageHeroSection, PRACTICE_AREA_IMAGE_MAP } from "./PageHeroSection";

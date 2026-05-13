@@ -26,9 +26,9 @@ ENV HOSTNAME=0.0.0.0
 RUN addgroup --system --gid 1001 nodejs && \
     adduser --system --uid 1001 nextjs
 
-COPY --from=builder /monorepo/apps/dallas/public ./public
 COPY --from=builder --chown=nextjs:nodejs /monorepo/apps/dallas/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /monorepo/apps/dallas/.next/static ./apps/dallas/.next/static
+COPY --from=builder /monorepo/apps/dallas/public ./apps/dallas/public
 
 USER nextjs
 EXPOSE 3000

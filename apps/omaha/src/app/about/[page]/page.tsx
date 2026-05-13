@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { HeroSection, CTABox, Breadcrumbs, Sidebar } from "@injury/ui";
+import { PageHeroSection, CTABox, Breadcrumbs, Sidebar } from "@injury/ui";
 import { siteConfig } from "@/config/site";
 
 interface Props {
@@ -50,16 +50,21 @@ export default function AboutPage({ params }: Props) {
 
   return (
     <>
-      <HeroSection
-        config={siteConfig}
-        headline={page.title}
-        subheadline="Omaha Injury Law Group — aggressive personal injury attorneys serving Omaha and all of Eastern Nebraska. No fee unless we win."
-        compact
-        imageSrc="/images/about-team.webp"
-      />
+      <PageHeroSection imageSrc="/images/about-team.webp" imageAlt="Personal injury law team">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Breadcrumbs items={breadcrumbs} />
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mt-4 mb-4">
+            {page.title}
+          </h1>
+          <p className="text-lg text-gray-300 max-w-3xl">Omaha Injury Law Group — aggressive personal injury attorneys serving Omaha and all of Eastern Nebraska. No fee unless we win.</p>
+          <div className="flex flex-wrap gap-3 mt-6">
+            <a href="/free-consultation" className="bg-red-700 hover:bg-red-600 text-white font-black px-6 py-3 rounded-xl transition-colors shadow-lg">Free Case Review →</a>
+            <a href={`tel:${siteConfig.phone}`} className="bg-white/10 hover:bg-white/20 text-white font-bold px-6 py-3 rounded-xl border border-white/20 transition-colors">Call {siteConfig.phoneFormatted}</a>
+          </div>
+        </div>
+      </PageHeroSection>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <Breadcrumbs items={breadcrumbs} />
 
         <div className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-10">
           <article className="lg:col-span-2">

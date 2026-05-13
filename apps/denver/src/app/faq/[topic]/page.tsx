@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Breadcrumbs, CTABox, FAQAccordion } from "@injury/ui";
+import { Breadcrumbs, CTABox, FAQAccordion, PageHeroSection } from "@injury/ui";
 import { siteConfig } from "@/config/site";
 import { FAQ_TOPIC_SLUGS, getFAQContent } from "@/content/faqs";
 
@@ -89,7 +89,7 @@ export default function FAQTopicPage({ params }: Props) {
       />
 
       {/* Header */}
-      <section className="bg-gradient-to-br from-gray-950 via-gray-900 to-red-950 py-16">
+      <PageHeroSection imageSrc="/images/courtroom.webp" imageAlt="Legal FAQ">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <Breadcrumbs crumbs={breadcrumbs} />
           <h1 className="text-3xl sm:text-4xl font-black text-white mt-4 mb-4">
@@ -97,7 +97,7 @@ export default function FAQTopicPage({ params }: Props) {
           </h1>
           <p className="text-lg text-gray-300">{content.intro}</p>
         </div>
-      </section>
+      </PageHeroSection>
 
       {/* FAQ Content */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

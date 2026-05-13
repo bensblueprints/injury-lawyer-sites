@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Breadcrumbs, CTABox, Sidebar } from "@injury/ui";
+import { Breadcrumbs, CTABox, Sidebar, PageHeroSection } from "@injury/ui";
 import { siteConfig } from "@/config/site";
 import {
   ABOUT_PAGE_SLUGS,
@@ -53,7 +53,7 @@ export default function AboutPage({ params }: Props) {
   return (
     <>
       {/* Header */}
-      <section className="bg-gradient-to-br from-gray-950 via-gray-900 to-red-950 py-16">
+      <PageHeroSection imageSrc="/images/about-team.webp" imageAlt="Personal injury law team">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Breadcrumbs crumbs={breadcrumbs} />
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mt-4 mb-4">
@@ -61,7 +61,7 @@ export default function AboutPage({ params }: Props) {
           </h1>
           <p className="text-lg text-gray-300 max-w-3xl">{content.intro}</p>
         </div>
-      </section>
+      </PageHeroSection>
 
       {/* Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

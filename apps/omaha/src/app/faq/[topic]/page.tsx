@@ -1,0 +1,129 @@
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { HeroSection, CTABox, FAQAccordion, Breadcrumbs, Sidebar } from "@injury/ui";
+import { siteConfig } from "@/config/site";
+
+interface Props {
+  params: { topic: string };
+}
+
+const FAQ_TOPICS = [
+  { slug: "general-personal-injury", title: "General Personal Injury FAQ" },
+  { slug: "car-accident-faq", title: "Car Accident FAQ" },
+  { slug: "truck-accident-faq", title: "Truck Accident FAQ" },
+  { slug: "slip-and-fall-faq", title: "Slip & Fall FAQ" },
+  { slug: "workers-compensation-faq", title: "Workers' Compensation FAQ" },
+  { slug: "wrongful-death-faq", title: "Wrongful Death FAQ" },
+  { slug: "medical-malpractice-faq", title: "Medical Malpractice FAQ" },
+  { slug: "motorcycle-accident-faq", title: "Motorcycle Accident FAQ" },
+  { slug: "insurance-claims-faq", title: "Insurance Claims FAQ" },
+  { slug: "statute-of-limitations-faq", title: "Statute of Limitations FAQ" },
+];
+
+export async function generateStaticParams() {
+  return FAQ_TOPICS.map((t) => ({ topic: t.slug }));
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const topic = FAQ_TOPICS.find((t) => t.slug === params.topic);
+  if (!topic) return {};
+  return {
+    title: `Omaha ${topic.title} | Omaha Injury Law Group`,
+    description: `Answers to the most common questions about ${topic.title.toLowerCase()} from Omaha Injury Law Group. Call (402) 555-0167 for a free consultation.`,
+    alternates: { canonical: `https://omahanebraskainjurylawyer.com/faq/${params.topic}` },
+  };
+}
+
+const BASE_FAQS = [
+  {
+    question: "How much does it cost to hire an Omaha personal injury lawyer?",
+    answer:
+      "Nothing upfront. Omaha Injury Law Group works on contingency — you pay nothing unless we win your case. Our fee is a percentage of your recovery.",
+  },
+  {
+    question: "How long do I have to file a personal injury claim in Nebraska?",
+    answer:
+      "Nebraska generally allows four years from the date of injury for most personal injury claims. Government entity claims may have shorter deadlines. Contact us immediately at (402) 555-0167.",
+  },
+  {
+    question: "What should I do immediately after an accident in Omaha?",
+    answer:
+      "Call 911, seek medical attention, document the scene with photos, collect witness information, and do not give recorded statements to insurers. Then call us at (402) 555-0167.",
+  },
+  {
+    question: "Can I still recover compensation if I was partially at fault in Nebraska?",
+    answer:
+      "Yes. Nebraska follows modified comparative negligence rules. You can recover damages as long as your fault does not exceed 50%. Your recovery is reduced by your percentage of fault.",
+  },
+  {
+    question: "What types of damages can I recover in an Omaha personal injury case?",
+    answer:
+      "You may be entitled to past and future medical bills, lost wages, loss of earning capacity, pain and suffering, emotional distress, property damage, and loss of consortium.",
+  },
+  {
+    question: "Do I have to go to court for a personal injury case in Omaha?",
+    answer:
+      "Most cases settle out of court. However, we prepare every case as if it will go to trial, which pressures insurance companies to offer fair settlements. If needed, we take cases to court.",
+  },
+  {
+    question: "How do I choose the right Omaha personal injury attorney?",
+    answer:
+      "Look for attorneys who specialize in personal injury, work on contingency, have verifiable client reviews, and demonstrate a track record of results. Omaha Injury Law Group offers free consultations.",
+  },
+];
+
+export default function FAQTopicPage({ params }: Props) {
+  const topic = FAQ_TOPICS.find((t) => t.slug === params.topic);
+  if (!topic) notFound();
+
+  const breadcrumbs = [
+    { label: "Home", href: "/" },
+    { label: "FAQ", href: "/faq/general-personal-injury" },
+    { label: topic.title, href: `/faq/${params.topic}` },
+  ];
+
+  const sidebarLinks = FAQ_TOPICS.filter((t) => t.slug !== params.topic).map((t) => ({
+    label: t.title,
+    href: `/faq/${t.slug}`,
+  }));
+
+  return (
+    <>
+      <HeroSection
+        config={siteConfig}
+        headline={`Omaha ${topic.title}`}
+        subheadline="Get clear, honest answers about Omaha personal injury law from experienced attorneys who fight for injury victims throughout Eastern Nebraska."
+        compact
+      />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <Breadcrumbs items={breadcrumbs} />
+
+        <div className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-10">
+          <article className="lg:col-span-2">
+            <p className="text-xl text-gray-700 mb-8">
+              These are the most common questions we receive at Omaha Injury Law Group. If
+              you don&apos;t see your question answered here, call us at (402) 555-0167 for a
+              free consultation with an Omaha injury attorney.
+            </p>
+
+            <FAQAccordion faqs={BASE_FAQS} />
+
+            <div className="mt-10">
+              <CTABox
+                config={siteConfig}
+                headline="Still Have Questions? Call Us Free."
+                body="Our Omaha injury attorneys are available 24/7. Free consultation — no obligation, no upfront fees."
+                variant="red"
+              />
+            </div>
+          </article>
+
+          <aside className="lg:col-span-1">
+            <Sidebar config={siteConfig} links={sidebarLinks} heading="More FAQ Topics" />
+          </aside>
+        </div>
+      </div>
+    </>
+  );
+}

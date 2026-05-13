@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Base ─────────────────────────────────────────────────────────────────── */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+      "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    @apply text-gray-900 bg-white;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-black tracking-tight;
+  }
+
+  a {
+    @apply transition-colors;
+  }
+
+  img,
+  video {
+    @apply max-w-full;
+  }
+}
+
+/* ─── Prose Customizations ──────────────────────────────────────────────────── */
+@layer components {
+  .prose h2 {
+    @apply text-red-700 font-black;
+  }
+
+  .prose h3 {
+    @apply text-red-800 font-bold;
+  }
+
+  .prose h4 {
+    @apply text-red-900 font-semibold;
+  }
+
+  .prose a {
+    @apply text-red-700 hover:text-red-800 no-underline font-semibold;
+  }
+
+  .prose strong {
+    @apply text-gray-900 font-bold;
+  }
+
+  .prose blockquote {
+    @apply border-l-red-600 bg-red-50 text-gray-700 not-italic;
+  }
+
+  .prose ul > li::marker {
+    @apply text-red-600;
+  }
+
+  .prose ol > li::marker {
+    @apply text-red-600 font-bold;
+  }
+}
+
+/* ─── Utilities ─────────────────────────────────────────────────────────────── */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Skip to content */
+  .skip-link {
+    @apply absolute -top-10 left-0 z-50 bg-red-700 text-white font-bold px-4 py-2 rounded-br-lg transition-all;
+  }
+
+  .skip-link:focus {
+    @apply top-0;
+  }
+}

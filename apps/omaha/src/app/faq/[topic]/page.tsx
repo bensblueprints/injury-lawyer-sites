@@ -96,6 +96,7 @@ export default function FAQTopicPage({ params }: Props) {
         headline={`Omaha ${topic.title}`}
         subheadline="Get clear, honest answers about Omaha personal injury law from experienced attorneys who fight for injury victims throughout Eastern Nebraska."
         compact
+        imageSrc="/images/courtroom.webp"
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

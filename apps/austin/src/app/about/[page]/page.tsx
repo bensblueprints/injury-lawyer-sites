@@ -55,6 +55,7 @@ export default function AboutPage({ params }: Props) {
         headline={page.title}
         subheadline="Austin Injury Law Group — aggressive personal injury attorneys serving Austin and all of Central Texas. No fee unless we win."
         compact
+        imageSrc="/images/about-team.webp"
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

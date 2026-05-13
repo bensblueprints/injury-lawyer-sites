@@ -60,6 +60,7 @@ export default function ResourcePage({ params }: Props) {
         headline={topic.title}
         subheadline="Free resource from Austin Injury Law Group — helping Central Texas injury victims understand their rights and options."
         compact
+        imageSrc="/images/attorney-consultation.webp"
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

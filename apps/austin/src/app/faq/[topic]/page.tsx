@@ -96,6 +96,7 @@ export default function FAQTopicPage({ params }: Props) {
         headline={`Austin ${topic.title}`}
         subheadline="Get clear, honest answers about Austin personal injury law from experienced attorneys who fight for injury victims throughout Central Texas."
         compact
+        imageSrc="/images/courtroom.webp"
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

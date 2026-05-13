@@ -61,6 +61,7 @@ export default function LegalProcessPage({ params }: Props) {
         headline={topic.title}
         subheadline="Austin Injury Law Group guides you through every step of the Texas personal injury legal process. We handle everything so you can focus on recovery."
         compact
+        imageSrc="/images/legal-process.webp"
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

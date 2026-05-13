@@ -2,46 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { isBusinessHours } from "@/lib/businessHours";
 
-const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY ?? "";
-const ELEVENLABS_PHONE_NUMBER_ID = process.env.ELEVENLABS_PHONE_NUMBER_ID ?? "";
-const ELEVENLABS_NOTIFY_AGENT_ID = process.env.ELEVENLABS_NOTIFY_AGENT_ID ?? "";
-
-async function triggerAttorneyCall(
-  attorneyPhone: string,
-  clientName: string,
-  clientPhone: string,
-  caseType: string,
-  firmName: string
-) {
-  if (!ELEVENLABS_API_KEY || !ELEVENLABS_PHONE_NUMBER_ID || !ELEVENLABS_NOTIFY_AGENT_ID) {
-    console.warn("ElevenLabs phone env vars not set — skipping outbound call");
-    return false;
-  }
-
-  const res = await fetch("https://api.elevenlabs.io/v1/convai/twilio/outbound-call", {
-    method: "POST",
-    headers: {
-      "xi-api-key": ELEVENLABS_API_KEY,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      agent_id: ELEVENLABS_NOTIFY_AGENT_ID,
-      agent_phone_number_id: ELEVENLABS_PHONE_NUMBER_ID,
-      to_number: attorneyPhone,
-      conversation_initiation_client_data: {
-        dynamic_variables: {
-          client_name: clientName,
-          client_phone: clientPhone,
-          case_type: caseType,
-          firm_name: firmName,
-        },
-      },
-    }),
-  });
-
-  return res.ok;
-}
-
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
@@ -51,12 +11,13 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
-    // Log the lead
+    // Look up the site and its assigned attorney
     const site = await prisma.site.findFirst({
       where: { domain },
       include: { attorney: true },
     });
 
+    // Save the lead
     await prisma.lead.create({
       data: {
         domain,
@@ -70,40 +31,30 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    // Check business hours
+    const attorney = site?.attorney;
+
+    // After hours — lead saved, attorney will follow up
     if (!isBusinessHours(domain)) {
       return NextResponse.json({
         status: "after_hours",
-        message:
-          "Our office is currently closed. An attorney will call you back during business hours — Monday through Friday, 8am to 8pm, or Saturday, 9am to 5pm.",
+        instruction:
+          "Lead saved. Tell the caller: our office is currently closed but an attorney will call them back during business hours — Monday through Friday 8am to 8pm, or Saturday 9am to 5pm. Then say goodbye and end the call.",
       });
     }
 
-    // Find assigned attorney and call them
-    const attorney = site?.attorney;
+    // No attorney assigned — lead saved
     if (!attorney) {
       return NextResponse.json({
-        status: "no_attorney",
-        message:
-          "Your information has been received. An attorney from our team will call you shortly.",
+        status: "logged",
+        instruction:
+          "Lead saved. Tell the caller an attorney will call them back shortly, say goodbye, and end the call.",
       });
     }
 
-    const firmName = site?.city
-      ? `${site.city} Injury Law Group`
-      : "our law firm";
-
-    const called = await triggerAttorneyCall(
-      attorney.phone,
-      name,
-      phone,
-      caseType ?? "personal injury",
-      firmName
-    );
-
+    // Attorney assigned — instruct agent to do live transfer using transfer_to_number built-in tool
     return NextResponse.json({
-      status: called ? "connecting" : "logged",
-      instruction: "Lead registered successfully. Now say a brief warm goodbye and end the call.",
+      status: "transfer",
+      instruction: `Lead saved. Say "Please hold while I connect you with ${attorney.name}" then immediately call the transfer_to_number tool.`,
     });
   } catch (e) {
     console.error("ElevenLabs transfer error:", e);

@@ -33,11 +33,14 @@ export function ExitIntentPopup({ config }: { config: SiteConfig }) {
             onClick={() => setOpen(false)}
           />
           <motion.div
-            initial={{ opacity: 0, y: -60, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -60, scale: 0.9 }}
+            className="fixed inset-0 z-[91] flex items-center justify-center px-4 pointer-events-none"
+          >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: -20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: -20 }}
             transition={{ type: "spring", stiffness: 300, damping: 25 }}
-            className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[91] w-full max-w-md px-4"
+            className="w-full max-w-md pointer-events-auto"
           >
             <div className="bg-gradient-to-br from-red-700 to-red-900 rounded-2xl shadow-2xl overflow-hidden">
               <div className="p-6 relative">
@@ -75,6 +78,7 @@ export function ExitIntentPopup({ config }: { config: SiteConfig }) {
                 </button>
               </div>
             </div>
+          </motion.div>
           </motion.div>
         </>
       )}

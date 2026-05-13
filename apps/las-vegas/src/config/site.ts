@@ -24,4 +24,5 @@ export const siteConfig: SiteConfig = {
   description:
     "Aggressive personal injury attorneys serving Las Vegas, Henderson, North Las Vegas, and all of Southern Nevada. No fee unless we win.",
   tagline: "Las Vegas's Most Aggressive Injury Lawyers",
+  elevenLabsAgentId: "agent_3201krfrtyd8frrak4dcekbsxk0b",
 };

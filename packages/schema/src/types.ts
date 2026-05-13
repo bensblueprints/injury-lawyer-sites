@@ -21,6 +21,7 @@ export interface SiteConfig {
   lawyerPhoto: string;
   description: string;
   tagline: string;
+  elevenLabsAgentId?: string;
 }
 
 export interface FAQ {

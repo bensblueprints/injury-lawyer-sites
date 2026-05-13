@@ -24,4 +24,5 @@ export const siteConfig: SiteConfig = {
   description:
     "Aggressive personal injury attorneys serving Austin, Round Rock, Cedar Park, Georgetown, and all of Central Texas. No fee unless we win.",
   tagline: "Austin's Most Aggressive Injury Lawyers",
+  elevenLabsAgentId: "agent_3101krfrvwwxfgm9anxt1xbwhg4v",
 };

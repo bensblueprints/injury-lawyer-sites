@@ -24,4 +24,5 @@ export const siteConfig: SiteConfig = {
   description:
     "Aggressive personal injury attorneys serving Dallas, Plano, Irving, Arlington, and all of DFW. No fee unless we win.",
   tagline: "Dallas's Most Aggressive Injury Lawyers",
+  elevenLabsAgentId: "agent_2601krfrvrqxe1rt4mhpex3n5whp",
 };

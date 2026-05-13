@@ -50,6 +50,19 @@ export async function POST(request: NextRequest) {
 
     if (error) console.error("Resend error:", error);
 
+    if (process.env.ADMIN_API_URL) {
+      fetch(`${process.env.ADMIN_API_URL}/api/leads`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          domain: "austintexasinjurylawyer.com",
+          name, phone, email,
+          caseType: caseType || "Personal Injury",
+          message: description || null,
+        }),
+      }).catch(() => {});
+    }
+
     return NextResponse.json({ success: true });
   } catch (err) {
     console.error("Lead route error:", err);

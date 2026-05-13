@@ -1,0 +1,73 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Attorney {
+  id        String    @id @default(cuid())
+  name      String
+  firmName  String
+  email     String    @unique
+  phone     String
+  notes     String?
+  createdAt DateTime  @default(now())
+  sites     Site[]
+  invoices  Invoice[]
+}
+
+model Site {
+  id           String    @id @default(cuid())
+  domain       String    @unique
+  practiceArea String
+  city         String
+  state        String
+  costPerLead  Float     @default(0)
+  attorneyId   String?
+  attorney     Attorney? @relation(fields: [attorneyId], references: [id])
+  leads        Lead[]
+  createdAt    DateTime  @default(now())
+}
+
+model Lead {
+  id        String     @id @default(cuid())
+  domain    String
+  siteId    String?
+  site      Site?      @relation(fields: [siteId], references: [id])
+  name      String
+  phone     String
+  email     String
+  caseType  String
+  message   String?
+  status    LeadStatus @default(NEW)
+  invoiceId String?
+  invoice   Invoice?   @relation(fields: [invoiceId], references: [id])
+  createdAt DateTime   @default(now())
+}
+
+enum LeadStatus {
+  NEW
+  CONTACTED
+  SOLD
+  ARCHIVED
+}
+
+model Invoice {
+  id         String        @id @default(cuid())
+  attorneyId String
+  attorney   Attorney      @relation(fields: [attorneyId], references: [id])
+  amount     Float
+  status     InvoiceStatus @default(UNPAID)
+  leads      Lead[]
+  notes      String?
+  createdAt  DateTime      @default(now())
+  paidAt     DateTime?
+}
+
+enum InvoiceStatus {
+  UNPAID
+  PAID
+}

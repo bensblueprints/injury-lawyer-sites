@@ -24,4 +24,5 @@ export const siteConfig: SiteConfig = {
   description:
     "Aggressive personal injury attorneys serving Omaha, Bellevue, Papillion, La Vista, and all of Eastern Nebraska. No fee unless we win.",
   tagline: "Omaha's Most Aggressive Injury Lawyers",
+  elevenLabsAgentId: "agent_7201krfrw0eqfqsrsq63cxnwcedf",
 };

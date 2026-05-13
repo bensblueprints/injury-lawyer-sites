@@ -71,6 +71,20 @@ export async function POST(request: NextRequest) {
       console.error("Resend error:", error);
     }
 
+    // Forward lead to central admin DB (fire and forget)
+    if (process.env.ADMIN_API_URL) {
+      fetch(`${process.env.ADMIN_API_URL}/api/leads`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          domain: "dallastexasinjurylawyer.com",
+          name, phone, email,
+          caseType: caseType || "Personal Injury",
+          message: description || null,
+        }),
+      }).catch(() => {});
+    }
+
     return NextResponse.json({ success: true });
   } catch (err) {
     console.error("Lead route error:", err);

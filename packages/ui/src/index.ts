@@ -15,3 +15,4 @@ export { TableOfContents } from "./TableOfContents";
 export { FAQAccordion } from "./FAQAccordion";
 export { TrustBar } from "./TrustBar";
 export { ProcessSteps } from "./ProcessSteps";
+export { AIReceptionist } from "./AIReceptionist";

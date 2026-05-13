@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/config/site";
-import { Header, Footer, StickyBar, ExitIntentPopup } from "@injury/ui";
+import { Header, Footer, StickyBar, ExitIntentPopup, AIReceptionist } from "@injury/ui";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -142,6 +142,9 @@ export default function RootLayout({
 
         <Footer config={siteConfig} />
         <ExitIntentPopup config={siteConfig} />
+        {siteConfig.elevenLabsAgentId && (
+          <AIReceptionist agentId={siteConfig.elevenLabsAgentId} />
+        )}
 
         {/* Local Business JSON-LD */}
         <script

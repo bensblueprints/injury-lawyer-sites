@@ -23,7 +23,11 @@ export default withAuth(
   },
   {
     callbacks: {
-      authorized: ({ token }) => !!token,
+      authorized: ({ token, req }) => {
+        const pathname = req.nextUrl?.pathname ?? "";
+        if (pathname.startsWith("/api/public/") || pathname.startsWith("/api/elevenlabs/")) return true;
+        return !!token;
+      },
     },
   }
 );

@@ -30,6 +30,6 @@ export default withAuth(
 
 export const config = {
   matcher: [
-    "/((?!$|login|attorney/login|register|api/auth|api/leads|api/attorney/register|_next/static|_next/image|favicon.ico).*)",
+    "/((?!$|login|attorney/login|register|api/auth|api/leads|api/attorney/register|api/public|api/elevenlabs|_next/static|_next/image|favicon.ico).*)",
   ],
 };

@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
+export const dynamic = "force-dynamic";
+
 // Public (no auth) — returns site domain → attorney phone for agent configuration
 export async function GET() {
   const sites = await prisma.site.findMany({
